@@ -30,10 +30,26 @@ export class AuthService {
       email: user.email,
     };
 
+    // const accessToken = generateToken(
+    //   jwtPayload,
+    //   env.JWT_SECRET,
+    //   env.JWT_ACCESS_TOKEN_EXPIRES
+    // );
+
     const accessToken = jwt.sign(jwtPayload, env.JWT_SECRET, {
       expiresIn: env.JWT_ACCESS_TOKEN_EXPIRES,
     });
 
-    return user;
+    const refreshToken = jwt.sign(jwtPayload, env.JWT_SECRET, {
+      expiresIn: env.JWT_REFRESH_TOKEN_EXPIRES,
+    });
+
+    const { password: pass, ...userInfo } = user;
+
+    return {
+      accessToken,
+      refreshToken,
+      user: userInfo,
+    };
   }
 }

@@ -9,13 +9,13 @@ const authService = new AuthService();
 export class AuthController {
   login = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-      const result = await authService.login(req.body);
+      const loginInfo = await authService.login(req.body);
 
       return sendResponse(res, {
         success: true,
         statusCode: StatusCodes.OK,
         message: "Login successful!",
-        data: result,
+        data: loginInfo,
       });
     }
   );

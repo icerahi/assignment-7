@@ -1,11 +1,10 @@
-import { Request, Response, Router } from "express";
-import { prisma } from "../../config/db";
+import { Router } from "express";
+import { UserController } from "./user.controller";
 
 const router = Router();
 
-router.get("/me", async (req: Request, res: Response) => {
-  const user = await prisma.user.findMany({});
-  res.json(user);
-});
+const userController = new UserController();
+
+router.get("/about-me", userController.aboutMe);
 
 export const userRoutes = router;
