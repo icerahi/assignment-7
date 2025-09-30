@@ -1,16 +1,28 @@
-import dotenv from "dotenv";
 import http, { Server } from "http";
 import app from "./app";
-
-dotenv.config();
+import { prisma } from "./config/db";
+import { env } from "./config/env";
+import { seedAdmin } from "./utils/seedAdmin";
 
 let server: Server | null = null;
 
+async function connectToDB() {
+  try {
+    await prisma.$connect();
+    console.log("***Database Connected!");
+  } catch (err) {
+    console.log("*** DB connection failed!");
+    process.exit(1);
+  }
+}
+
 async function startServer() {
   try {
+    await connectToDB();
+
     server = http.createServer(app);
-    server.listen(process.env.PORT, () => {
-      console.log("Server is Running on port:", process.env.PORT);
+    server.listen(env.PORT, () => {
+      console.log("Server is Running on port:", env.PORT);
     });
 
     handleProcessEvents();
@@ -53,4 +65,7 @@ function handleProcessEvents() {
   });
 }
 
-startServer();
+(async () => {
+  await startServer();
+  await seedAdmin();
+})();
