@@ -13,6 +13,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator zod {
+	provider = "prisma-zod-generator"
+  output="../src/zodSchemas/"
+}
+
+
 model User{
     id Int @id @default(autoincrement())
 

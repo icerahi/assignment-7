@@ -27,6 +27,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.6.0",
     "prisma": "^6.16.2",
+    "prisma-zod-generator": "^1.25.0",
     "ts-node-dev": "^2.0.0",
     "tsx": "^4.20.6",
     "typescript": "^5.9.2"

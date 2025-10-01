@@ -1,14 +1,19 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 import { checkAuth } from "../../middlewares/checkAuth";
+import { validateRequest } from "../../middlewares/validateRequest";
+import { BlogCreateWithoutUserInputObjectZodSchema } from "../../zodSchemas/schemas";
 import { BlogController } from "./blog.controller";
 
 const router = Router();
 
 const blogController = new BlogController();
 
-router.post("/create", checkAuth, (req: Request, res: Response) => {
-  res.send("all blogs route");
-});
+router.post(
+  "/create",
+  checkAuth,
+  validateRequest(BlogCreateWithoutUserInputObjectZodSchema),
+  blogController.createBlog
+);
 
 router.get("/all", blogController.getAllBlogs);
 router.get("/:id", blogController.getSingleBlog);

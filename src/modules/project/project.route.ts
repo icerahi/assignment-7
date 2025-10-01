@@ -1,9 +1,9 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
+import { ProjectController } from "./project.controller";
 
 const router = Router();
 
-router.use("/all", (req: Request, res: Response) => {
-  res.send("all experience route");
-});
+const projectController = new ProjectController();
+router.get("/all", projectController.getAllProjects);
 
 export const projectRoutes = router;

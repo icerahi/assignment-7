@@ -35,4 +35,19 @@ export class BlogController {
       });
     }
   );
+
+  createBlog = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const decodedToken = req.user;
+
+      const result = await blogService.createBlog(decodedToken.id, req.body);
+
+      return sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.CREATED,
+        message: "Blog created Successfully!",
+        data: result,
+      });
+    }
+  );
 }

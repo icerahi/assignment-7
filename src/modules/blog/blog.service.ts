@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { StatusCodes } from "http-status-codes";
 import { prisma } from "../../config/db";
 import AppError from "../../helpers/AppError";
@@ -16,6 +17,28 @@ export class BlogService {
     const blog = await prisma.blog.findUnique({ where: { id } });
 
     if (!blog) throw new AppError(StatusCodes.NOT_FOUND, "Blog not found!");
+
+    return blog;
+  }
+
+  async createBlog(userId: number, payload: Prisma.BlogCreateWithoutUserInput) {
+    const blogData = {
+      ...payload,
+      userId,
+    };
+
+    const blog = await prisma.blog.create({
+      data: blogData,
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+            picture: true,
+          },
+        },
+      },
+    });
 
     return blog;
   }
