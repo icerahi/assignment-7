@@ -64,4 +64,19 @@ export class BlogService {
     });
     return updatedBlog;
   }
+
+  //delete blog
+  async deleteBlog(blogId: number) {
+    const blog = await prisma.blog.findUnique({ where: { id: blogId } });
+
+    if (!blog) {
+      throw new AppError(StatusCodes.NOT_FOUND, "Blog not found!");
+    }
+
+    await prisma.blog.delete({
+      where: { id: blog.id },
+    });
+
+    return null;
+  }
 }

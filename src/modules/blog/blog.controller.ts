@@ -67,4 +67,20 @@ export class BlogController {
       });
     }
   );
+
+  //delete blog
+  deleteBlog = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const { id } = req.params;
+
+      const result = await blogService.deleteBlog(Number(id));
+
+      return sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.OK,
+        message: "Blog deleted Successfully!",
+        data: result,
+      });
+    }
+  );
 }

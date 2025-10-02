@@ -53,4 +53,20 @@ export class ProjectService {
 
     return updatedProject;
   }
+
+  //delete project
+  async deleteProject(projectId: number) {
+    const project = await prisma.project.findUnique({
+      where: { id: projectId },
+    });
+
+    if (!project)
+      throw new AppError(StatusCodes.NOT_FOUND, "Project not found!");
+
+    await prisma.project.delete({
+      where: { id: projectId },
+    });
+
+    return null;
+  }
 }

@@ -17,6 +17,18 @@ export class ExperienceService {
     return result;
   }
 
+  //get single experience
+  async getSingleExperience(id: number) {
+    const experience = await prisma.workExperience.findUnique({
+      where: { id },
+    });
+    if (!experience)
+      throw new AppError(StatusCodes.NOT_FOUND, "Experience not found!");
+
+    return experience;
+  }
+
+  //update
   async updateExperience(
     id: number,
     payload: Prisma.WorkExperienceUpdateInput
@@ -33,5 +45,20 @@ export class ExperienceService {
     });
 
     return updatedExperience;
+  }
+
+  //delete
+  async deleteExperience(id: number) {
+    const experience = await prisma.workExperience.findUnique({
+      where: { id },
+    });
+    if (!experience)
+      throw new AppError(StatusCodes.NOT_FOUND, "Experience not found!");
+
+    await prisma.workExperience.delete({
+      where: { id: experience.id },
+    });
+
+    return null;
   }
 }

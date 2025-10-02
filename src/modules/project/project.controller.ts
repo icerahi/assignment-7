@@ -70,4 +70,20 @@ export class ProjectController {
       });
     }
   );
+
+  //delete
+  deleteProject = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const { id } = req.params;
+
+      const result = await projectService.deleteProject(Number(id));
+
+      return sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.OK,
+        message: "Project Deleted Successfully!",
+        data: result,
+      });
+    }
+  );
 }

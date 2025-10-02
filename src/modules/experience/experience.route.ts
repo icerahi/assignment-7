@@ -25,4 +25,7 @@ router.patch(
   experienceController.updateExperience
 );
 
+router.delete("/delete/:id", checkAuth, experienceController.deleteExperience);
+router.get("/:id", experienceController.getSingleExperience);
+
 export const experienceRoutes = router;

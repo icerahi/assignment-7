@@ -29,4 +29,6 @@ router.patch(
   projectController.updateProject
 );
 
+router.delete("/:id", checkAuth, projectController.deleteProject);
+
 export const projectRoutes = router;

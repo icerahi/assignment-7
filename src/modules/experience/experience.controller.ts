@@ -23,6 +23,21 @@ export class ExperienceController {
     }
   );
 
+  //get single experience
+  getSingleExperience = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const { id } = req.params;
+      const result = await experienceService.getSingleExperience(Number(id));
+
+      return sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.OK,
+        message: "Experience retrieved Successfully!",
+        data: result,
+      });
+    }
+  );
+
   //update experience
   updateExperience = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
@@ -37,6 +52,21 @@ export class ExperienceController {
         statusCode: StatusCodes.OK,
         message: "Experience updated Successfully!",
 
+        data: result,
+      });
+    }
+  );
+
+  //update experience
+  deleteExperience = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const { id } = req.params;
+      const result = await experienceService.deleteExperience(Number(id));
+
+      return sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.OK,
+        message: "Experience deleted Successfully!",
         data: result,
       });
     }
