@@ -7,8 +7,7 @@ import { ExperienceService } from "./experience.service";
 const experienceService = new ExperienceService();
 
 export class ExperienceController {
-
-    //create experience
+  //create experience
   create = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
       const decodedToken = req.user;
@@ -16,13 +15,11 @@ export class ExperienceController {
       const result = await experienceService.create(decodedToken.id, req.body);
       return sendResponse(res, {
         success: true,
-        statusCode: StatusCodes.OK,
+        statusCode: StatusCodes.CREATED,
         message: "Experience Created Successfully!",
 
         data: result,
       });
     }
   );
-
-
 }

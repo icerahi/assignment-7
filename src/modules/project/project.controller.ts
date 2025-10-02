@@ -7,6 +7,7 @@ import { ProjectService } from "./project.service";
 const projectService = new ProjectService();
 
 export class ProjectController {
+  //all project
   getAllProjects = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
       const result = await projectService.getAllProjects();
@@ -17,6 +18,39 @@ export class ProjectController {
         message: "All projects retrieved Successfully!",
         meta: result.meta,
         data: result.data,
+      });
+    }
+  );
+
+  //single project
+  getSingleProject = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const { id } = req.params;
+
+      const result = await projectService.getSinglelProject(Number(id));
+
+      return sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.OK,
+        message: "Project retrieved Successfully!",
+
+        data: result,
+      });
+    }
+  );
+
+  //create
+  create = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const decodedToken = req.user;
+
+      const result = await projectService.create(decodedToken.id, req.body);
+
+      return sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.CREATED,
+        message: "Project Created Successfully!",
+        data: result,
       });
     }
   );
