@@ -6,6 +6,7 @@ const loadEnvVars = () => {
   const requiredVars: string[] = [
     "PORT",
     "DATABASE_URL",
+    "NODE_ENV",
 
     "SUPER_USER_NAME",
     "SUPER_USER_EMAIL",

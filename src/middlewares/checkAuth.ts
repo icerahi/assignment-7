@@ -8,7 +8,6 @@ import { verifyToken } from "../utils/jwtToken";
 export const checkAuth = (req: Request, res: Response, next: NextFunction) => {
   try {
     const accessToken = req.cookies?.accessToken || req.headers?.authorization;
-
     if (!accessToken)
       throw new AppError(StatusCodes.UNAUTHORIZED, "No token recieved");
 

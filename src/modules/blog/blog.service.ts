@@ -22,6 +22,7 @@ export class BlogService {
   }
 
   async createBlog(userId: number, payload: Prisma.BlogCreateWithoutUserInput) {
+    
     const blogData = {
       ...payload,
       userId,

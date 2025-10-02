@@ -36,6 +36,7 @@ export class BlogController {
     }
   );
 
+  
   createBlog = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
       const decodedToken = req.user;
