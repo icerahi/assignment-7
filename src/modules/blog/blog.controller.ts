@@ -36,7 +36,7 @@ export class BlogController {
     }
   );
 
-  
+  //create blog
   createBlog = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
       const decodedToken = req.user;
@@ -47,6 +47,22 @@ export class BlogController {
         success: true,
         statusCode: StatusCodes.CREATED,
         message: "Blog created Successfully!",
+        data: result,
+      });
+    }
+  );
+
+  //update blog
+  updateBlog = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const { id } = req.params;
+
+      const result = await blogService.updateBlog(Number(id), req.body);
+
+      return sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.OK,
+        message: "Blog updated Successfully!",
         data: result,
       });
     }

@@ -16,7 +16,6 @@ export class ProjectService {
 
   //get single projects
   async getSinglelProject(projectId: number) {
-    
     const project = await prisma.project.findUnique({
       where: { id: projectId },
     });
@@ -28,7 +27,6 @@ export class ProjectService {
   }
 
   //create project
-
   async create(userId: number, payload: Prisma.ProjectCreateWithoutUserInput) {
     const projectData = {
       ...payload,
@@ -38,5 +36,21 @@ export class ProjectService {
     const result = await prisma.project.create({ data: projectData });
 
     return result;
+  }
+
+  //update project
+  async updateProject(projectId: number, payload: Prisma.ProjectUpdateInput) {
+    const project = await prisma.project.findUnique({
+      where: { id: projectId },
+    });
+    if (!project)
+      throw new AppError(StatusCodes.NOT_FOUND, "Project not found!");
+
+    const updatedProject = await prisma.project.update({
+      where: { id: projectId },
+      data: payload,
+    });
+
+    return updatedProject;
   }
 }

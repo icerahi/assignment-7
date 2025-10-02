@@ -17,5 +17,6 @@ router.post(
 
 router.get("/all", blogController.getAllBlogs);
 router.get("/:id", blogController.getSingleBlog);
+router.patch("/:id", blogController.updateBlog);
 
 export const blogRoutes = router;

@@ -54,4 +54,20 @@ export class ProjectController {
       });
     }
   );
+
+  //update
+  updateProject = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const { id } = req.params;
+
+      const result = await projectService.updateProject(Number(id), req.body);
+
+      return sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.OK,
+        message: "Project Updated Successfully!",
+        data: result,
+      });
+    }
+  );
 }

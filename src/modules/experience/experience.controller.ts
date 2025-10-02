@@ -22,4 +22,23 @@ export class ExperienceController {
       });
     }
   );
+
+  //update experience
+  updateExperience = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const { id } = req.params;
+      const result = await experienceService.updateExperience(
+        Number(id),
+        req.body
+      );
+
+      return sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.OK,
+        message: "Experience updated Successfully!",
+
+        data: result,
+      });
+    }
+  );
 }

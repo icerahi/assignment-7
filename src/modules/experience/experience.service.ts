@@ -1,5 +1,7 @@
 import { Prisma } from "@prisma/client";
+import { StatusCodes } from "http-status-codes";
 import { prisma } from "../../config/db";
+import AppError from "../../helpers/AppError";
 
 export class ExperienceService {
   async create(
@@ -13,5 +15,23 @@ export class ExperienceService {
 
     const result = await prisma.workExperience.create({ data: experienceData });
     return result;
+  }
+
+  async updateExperience(
+    id: number,
+    payload: Prisma.WorkExperienceUpdateInput
+  ) {
+    const experience = await prisma.workExperience.findUnique({
+      where: { id },
+    });
+    if (!experience)
+      throw new AppError(StatusCodes.NOT_FOUND, "Experience not found!");
+
+    const updatedExperience = await prisma.workExperience.update({
+      where: { id: experience.id },
+      data: payload,
+    });
+
+    return updatedExperience;
   }
 }

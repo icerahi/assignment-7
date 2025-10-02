@@ -18,11 +18,17 @@ export class BlogService {
 
     if (!blog) throw new AppError(StatusCodes.NOT_FOUND, "Blog not found!");
 
+    //increase view
+    await prisma.blog.update({
+      where: { id },
+      data: { view: { increment: 1 } },
+    });
+
     return blog;
   }
 
+  // create blog
   async createBlog(userId: number, payload: Prisma.BlogCreateWithoutUserInput) {
-    
     const blogData = {
       ...payload,
       userId,
@@ -42,5 +48,20 @@ export class BlogService {
     });
 
     return blog;
+  }
+
+  //update blog
+  async updateBlog(blogId: number, payload: Prisma.BlogUpdateInput) {
+    const blog = await prisma.blog.findUnique({ where: { id: blogId } });
+
+    if (!blog) {
+      throw new AppError(StatusCodes.NOT_FOUND, "Blog not found!");
+    }
+
+    const updatedBlog = await prisma.blog.update({
+      where: { id: blog.id },
+      data: payload,
+    });
+    return updatedBlog;
   }
 }

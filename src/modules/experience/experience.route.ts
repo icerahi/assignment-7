@@ -1,7 +1,10 @@
 import { Router } from "express";
 import { checkAuth } from "../../middlewares/checkAuth";
 import { validateRequest } from "../../middlewares/validateRequest";
-import { WorkExperienceCreateWithoutUserInputObjectZodSchema } from "../../zodSchemas/schemas";
+import {
+  WorkExperienceCreateWithoutUserInputObjectZodSchema,
+  WorkExperienceUpdateInputObjectZodSchema,
+} from "../../zodSchemas/schemas";
 import { ExperienceController } from "./experience.controller";
 
 const router = Router();
@@ -13,6 +16,13 @@ router.post(
   checkAuth,
   validateRequest(WorkExperienceCreateWithoutUserInputObjectZodSchema),
   experienceController.create
+);
+
+router.patch(
+  "/update/:id",
+  checkAuth,
+  validateRequest(WorkExperienceUpdateInputObjectZodSchema),
+  experienceController.updateExperience
 );
 
 export const experienceRoutes = router;
