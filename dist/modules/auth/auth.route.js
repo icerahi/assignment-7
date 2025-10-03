@@ -15,4 +15,6 @@ const LoginSchema = zod_1.default.object({
     password: zod_1.default.string(),
 });
 router.post("/login", (0, validateRequest_1.validateRequest)(LoginSchema), authController.login);
+router.post("/logout", authController.logout);
+router.post("/refresh-token", authController.getNewAccessToken);
 exports.authRoutes = router;

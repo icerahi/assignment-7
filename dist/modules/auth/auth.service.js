@@ -30,7 +30,29 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const db_1 = require("../../config/db");
 const env_1 = require("../../config/env");
 const AppError_1 = __importDefault(require("../../helpers/AppError"));
+const jwtToken_1 = require("../../utils/jwtToken");
 class AuthService {
+    constructor() {
+        this.getNewAccessToken = (refreshToken) => __awaiter(this, void 0, void 0, function* () {
+            const verifiedRefreshToken = (0, jwtToken_1.verifyToken)(refreshToken, env_1.env.JWT_SECRET);
+            const user = yield db_1.prisma.user.findUnique({
+                where: {
+                    id: verifiedRefreshToken.id,
+                },
+            });
+            if (!user)
+                throw new AppError_1.default(http_status_codes_1.StatusCodes.BAD_REQUEST, "User does not exist");
+            const jwtPayload = {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+            };
+            const accessToken = jsonwebtoken_1.default.sign(jwtPayload, env_1.env.JWT_SECRET, {
+                expiresIn: env_1.env.JWT_ACCESS_TOKEN_EXPIRES,
+            });
+            return { accessToken };
+        });
+    }
     login(payload) {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield db_1.prisma.user.findUnique({

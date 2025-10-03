@@ -13,5 +13,7 @@ const LoginSchema = z.object({
 });
 
 router.post("/login", validateRequest(LoginSchema), authController.login);
+router.post("/logout", authController.logout);
+router.post("/refresh-token", authController.getNewAccessToken);
 
 export const authRoutes = router;

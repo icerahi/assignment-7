@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "bff0dc81-b4ed-4c33-ae93-aab88a8ec2dd",
+		"name": "Portfolio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47184650",
+		"_collection_link": "https://orbital-module-administrator-21672743-474184.postman.co/workspace/MD-IMRAN-HASAN-(RAHI)'s-Workspa~df96aff3-6628-4333-85b7-bd1a6097bf5b/collection/47184650-bff0dc81-b4ed-4c33-ae93-aab88a8ec2dd?action=share&source=collection_link&creator=47184650"
+	},
+	"item": [
+		{
+			"name": "blog",
+			"item": [
+				{
+					"name": "create blog",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlN1cGVyIFVzZXIiLCJlbWFpbCI6InN1cGVyQHVzZXIuY29tIiwiaWF0IjoxNzU5Mjc0NTQyLCJleHAiOjE3NTk4NzkzNDJ9.yq4NXOYeGrot3MYpzUf8FjhksqVDYErqO91-df0APOM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"My Blog\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API URL}}/blog/create",
+							"host": [
+								"{{API URL}}"
+							],
+							"path": [
+								"blog",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all blogs",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "get single blog",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update blog",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete blog",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"imran@gmail.com\",\n   \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API URL}}/auth/login",
+							"host": [
+								"{{API URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh-token",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "About Me",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Imran Hasan\",\n     \"bio\":\"You an me just for ever\",\n    \"skills\":[\"python\",\"javascript\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API URL}}/user/update",
+							"host": [
+								"{{API URL}}"
+							],
+							"path": [
+								"user",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "project",
+			"item": [
+				{
+					"name": "all",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "single project",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "update project",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"liveSite\":\"https://imranhasan.dev\",\n     \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API URL}}/project/1",
+							"host": [
+								"{{API URL}}"
+							],
+							"path": [
+								"project",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete project",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Experience",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IlN1cGVyIFVzZXIiLCJlbWFpbCI6InN1cGVyQHVzZXIuY29tIiwiaWF0IjoxNzU5Mjc0NTQyLCJleHAiOjE3NTk4NzkzNDJ9.yq4NXOYeGrot3MYpzUf8FjhksqVDYErqO91-df0APOM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"company\":\"Meta Morphosis Ltd.\",\n    \"position\":\"Python Intern\",\n    \"startDate\":\"2022-02-02\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API URL}}/experience/create",
+							"host": [
+								"{{API URL}}"
+							],
+							"path": [
+								"experience",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "API URL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
