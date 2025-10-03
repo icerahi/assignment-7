@@ -16,8 +16,6 @@ export class AuthController {
 
       setAuthCookies(res, loginInfo);
 
-      console.log(loginInfo);
-
       return sendResponse(res, {
         success: true,
         statusCode: StatusCodes.OK,
@@ -67,6 +65,17 @@ export class AuthController {
         statusCode: StatusCodes.OK,
         message: "New Access Token Retrived successfully",
         data: accessToken,
+      });
+    }
+  );
+
+  validateUser = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.OK,
+        message: "User validation successful",
+        data: req.user,
       });
     }
   );
