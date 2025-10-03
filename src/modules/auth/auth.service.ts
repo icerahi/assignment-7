@@ -4,7 +4,6 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { prisma } from "../../config/db";
 import { env } from "../../config/env";
 import AppError from "../../helpers/AppError";
-
 export class AuthService {
   async login(payload: { email: string; password: string }) {
     const user = await prisma.user.findUnique({

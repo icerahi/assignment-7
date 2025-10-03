@@ -64,7 +64,6 @@ function handleProcessEvents() {
     gracefulShutdown("unhandledRejection");
   });
 }
-
 (async () => {
   await startServer();
   await seedAdmin();

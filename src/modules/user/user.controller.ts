@@ -25,7 +25,11 @@ export class UserController {
     async (req: Request, res: Response, next: NextFunction) => {
       const decodedToken = req.user;
 
-      const userInfo = await userService.updateUser(decodedToken.id, req.body);
+      const payload = {
+        ...req.body,
+        picture: req.file?.path,
+      };
+      const userInfo = await userService.updateUser(decodedToken.id, payload);
 
       return sendResponse(res, {
         success: true,

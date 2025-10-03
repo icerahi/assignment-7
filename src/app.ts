@@ -9,6 +9,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // for handing form data
 app.use(cookieParser());
 
 app.use("/api/v1", router);

@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
+import { StatusCodes } from "http-status-codes";
 import { prisma } from "../../config/db";
-
+import AppError from "../../helpers/AppError";
 export class UserService {
   async aboutMe() {
     const userInfo = await prisma.user.findFirst({
@@ -19,6 +20,13 @@ export class UserService {
   }
 
   async updateUser(userId: number, payload: Prisma.UserUpdateInput) {
+    if (payload.password) {
+      throw new AppError(
+        StatusCodes.BAD_REQUEST,
+        "Remove password from payload and use specific endpoint for password update"
+      );
+    }
+
     const updatedUser = await prisma.user.update({
       where: { id: userId },
       data: payload,

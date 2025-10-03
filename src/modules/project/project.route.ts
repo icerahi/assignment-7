@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { multerUpload } from "../../config/multer.config";
 import { checkAuth } from "../../middlewares/checkAuth";
 import { validateRequest } from "../../middlewares/validateRequest";
 import {
@@ -18,6 +19,7 @@ router.get("/:id", projectController.getSingleProject);
 router.post(
   "/create",
   checkAuth,
+  multerUpload.single("thumbnail"),
   validateRequest(ProjectCreateWithoutUserInputObjectZodSchema),
   projectController.create
 );

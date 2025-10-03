@@ -16,6 +16,10 @@ const loadEnvVars = () => {
     "JWT_SECRET",
     "JWT_ACCESS_TOKEN_EXPIRES",
     "JWT_REFRESH_TOKEN_EXPIRES",
+
+    "CLOUDINARY_CLOUD_NAME",
+    "CLOUDINARY_API_KEY",
+    "CLOUDINARY_API_SECRET",
   ];
 
   requiredVars.forEach((key) => {

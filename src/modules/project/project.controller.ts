@@ -44,7 +44,12 @@ export class ProjectController {
     async (req: Request, res: Response, next: NextFunction) => {
       const decodedToken = req.user;
 
-      const result = await projectService.create(decodedToken.id, req.body);
+      const payload = {
+        ...req.body,
+        thumbnail: req.file?.path ,
+      };
+
+      const result = await projectService.create(decodedToken.id, payload);
 
       return sendResponse(res, {
         success: true,
