@@ -46,7 +46,7 @@ export class ProjectController {
 
       const payload = {
         ...req.body,
-        thumbnail: req.file?.path ,
+        thumbnail: req.file?.path,
       };
 
       const result = await projectService.create(decodedToken.id, payload);
@@ -65,7 +65,11 @@ export class ProjectController {
     async (req: Request, res: Response, next: NextFunction) => {
       const { id } = req.params;
 
-      const result = await projectService.updateProject(Number(id), req.body);
+      const payload = {
+        ...req.body,
+        thumbnail: req.file?.path,
+      };
+      const result = await projectService.updateProject(Number(id), payload);
 
       return sendResponse(res, {
         success: true,

@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { checkAuth } from "../../middlewares/checkAuth";
 import { validateRequest } from "../../middlewares/validateRequest";
-import {
-  WorkExperienceCreateWithoutUserInputObjectZodSchema,
-  WorkExperienceUpdateInputObjectZodSchema,
-} from "../../zodSchemas/schemas";
 import { ExperienceController } from "./experience.controller";
+import {
+  ExperienceCreateAPISchema,
+  ExperienceUpdateAPISchema,
+} from "./experinece.validation";
 
 const router = Router();
 
@@ -14,14 +14,14 @@ const experienceController = new ExperienceController();
 router.post(
   "/create",
   checkAuth,
-  validateRequest(WorkExperienceCreateWithoutUserInputObjectZodSchema),
+  validateRequest(ExperienceCreateAPISchema),
   experienceController.create
 );
 
 router.patch(
   "/update/:id",
   checkAuth,
-  validateRequest(WorkExperienceUpdateInputObjectZodSchema),
+  validateRequest(ExperienceUpdateAPISchema),
   experienceController.updateExperience
 );
 

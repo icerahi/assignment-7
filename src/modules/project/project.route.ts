@@ -2,11 +2,11 @@ import { Router } from "express";
 import { multerUpload } from "../../config/multer.config";
 import { checkAuth } from "../../middlewares/checkAuth";
 import { validateRequest } from "../../middlewares/validateRequest";
-import {
-  ProjectCreateWithoutUserInputObjectZodSchema,
-  ProjectUpdateInputObjectZodSchema,
-} from "../../zodSchemas/schemas";
 import { ProjectController } from "./project.controller";
+import {
+  ProjectCreateAPISchema,
+  ProjectUpdateAPISchema,
+} from "./project.validation";
 
 const router = Router();
 
@@ -20,14 +20,15 @@ router.post(
   "/create",
   checkAuth,
   multerUpload.single("thumbnail"),
-  validateRequest(ProjectCreateWithoutUserInputObjectZodSchema),
+  validateRequest(ProjectCreateAPISchema),
   projectController.create
 );
 
 router.patch(
   "/:id",
   checkAuth,
-  validateRequest(ProjectUpdateInputObjectZodSchema),
+  multerUpload.single("thumbnail"),
+  validateRequest(ProjectUpdateAPISchema),
   projectController.updateProject
 );
 

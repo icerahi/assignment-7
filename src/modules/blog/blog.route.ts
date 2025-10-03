@@ -1,11 +1,8 @@
 import { Router } from "express";
 import { checkAuth } from "../../middlewares/checkAuth";
 import { validateRequest } from "../../middlewares/validateRequest";
-import {
-  BlogCreateWithoutUserInputObjectZodSchema,
-  BlogUpdateInputObjectZodSchema,
-} from "../../zodSchemas/schemas";
 import { BlogController } from "./blog.controller";
+import { BlogCreateAPISchema, BlogUpdateAPISchema } from "./blog.validation";
 
 const router = Router();
 
@@ -14,7 +11,7 @@ const blogController = new BlogController();
 router.post(
   "/create",
   checkAuth,
-  validateRequest(BlogCreateWithoutUserInputObjectZodSchema),
+  validateRequest(BlogCreateAPISchema),
   blogController.createBlog
 );
 
@@ -24,7 +21,7 @@ router.get("/:id", blogController.getSingleBlog);
 router.patch(
   "/:id",
   checkAuth,
-  validateRequest(BlogUpdateInputObjectZodSchema),
+  validateRequest(BlogUpdateAPISchema),
   blogController.updateBlog
 );
 router.delete("/:id", checkAuth, blogController.deleteBlog);

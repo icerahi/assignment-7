@@ -16,9 +16,10 @@ export const seedAdmin = async () => {
 
     console.log("Creating Admin.....");
 
+    console.log(env.SUPER_USER_PASSWORD, env.HASH_SALT_ROUND);
     const hashedPassword = await bcrypt.hash(
       env.SUPER_USER_PASSWORD as string,
-      Number(process.env.HASH_SALT_ROUND)
+      Number(env.HASH_SALT_ROUND)
     );
 
     const payload: Prisma.UserCreateInput = {

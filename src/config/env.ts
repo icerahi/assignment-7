@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 const loadEnvVars = () => {
   const requiredVars: string[] = [
@@ -10,6 +10,7 @@ const loadEnvVars = () => {
 
     "SUPER_USER_NAME",
     "SUPER_USER_EMAIL",
+    "SUPER_USER_PASSWORD",
 
     "HASH_SALT_ROUND",
 

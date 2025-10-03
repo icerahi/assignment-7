@@ -1,0 +1,60 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserUncheckedUpdateWithoutBlogsInputObjectZodSchema = exports.UserUncheckedUpdateWithoutBlogsInputObjectSchema = void 0;
+const z = __importStar(require("zod"));
+const IntFieldUpdateOperationsInput_schema_1 = require("./IntFieldUpdateOperationsInput.schema");
+const StringFieldUpdateOperationsInput_schema_1 = require("./StringFieldUpdateOperationsInput.schema");
+const NullableStringFieldUpdateOperationsInput_schema_1 = require("./NullableStringFieldUpdateOperationsInput.schema");
+const UserUpdateskillsInput_schema_1 = require("./UserUpdateskillsInput.schema");
+const DateTimeFieldUpdateOperationsInput_schema_1 = require("./DateTimeFieldUpdateOperationsInput.schema");
+const ProjectUncheckedUpdateManyWithoutUserNestedInput_schema_1 = require("./ProjectUncheckedUpdateManyWithoutUserNestedInput.schema");
+const WorkExperienceUncheckedUpdateManyWithoutUserNestedInput_schema_1 = require("./WorkExperienceUncheckedUpdateManyWithoutUserNestedInput.schema");
+const makeSchema = () => z.object({
+    id: z.union([z.number().int(), z.lazy(() => IntFieldUpdateOperationsInput_schema_1.IntFieldUpdateOperationsInputObjectSchema)]).optional(),
+    name: z.union([z.string(), z.lazy(() => StringFieldUpdateOperationsInput_schema_1.StringFieldUpdateOperationsInputObjectSchema)]).optional(),
+    email: z.union([z.string(), z.lazy(() => StringFieldUpdateOperationsInput_schema_1.StringFieldUpdateOperationsInputObjectSchema)]).optional(),
+    picture: z.union([z.string(), z.lazy(() => NullableStringFieldUpdateOperationsInput_schema_1.NullableStringFieldUpdateOperationsInputObjectSchema)]).optional().nullable(),
+    password: z.union([z.string(), z.lazy(() => StringFieldUpdateOperationsInput_schema_1.StringFieldUpdateOperationsInputObjectSchema)]).optional(),
+    phone: z.union([z.string(), z.lazy(() => NullableStringFieldUpdateOperationsInput_schema_1.NullableStringFieldUpdateOperationsInputObjectSchema)]).optional().nullable(),
+    bio: z.union([z.string(), z.lazy(() => NullableStringFieldUpdateOperationsInput_schema_1.NullableStringFieldUpdateOperationsInputObjectSchema)]).optional().nullable(),
+    skills: z.union([z.lazy(() => UserUpdateskillsInput_schema_1.UserUpdateskillsInputObjectSchema), z.string().array()]).optional(),
+    createdAt: z.union([z.coerce.date(), z.lazy(() => DateTimeFieldUpdateOperationsInput_schema_1.DateTimeFieldUpdateOperationsInputObjectSchema)]).optional(),
+    updatedAt: z.union([z.coerce.date(), z.lazy(() => DateTimeFieldUpdateOperationsInput_schema_1.DateTimeFieldUpdateOperationsInputObjectSchema)]).optional(),
+    projects: z.lazy(() => ProjectUncheckedUpdateManyWithoutUserNestedInput_schema_1.ProjectUncheckedUpdateManyWithoutUserNestedInputObjectSchema).optional(),
+    experiences: z.lazy(() => WorkExperienceUncheckedUpdateManyWithoutUserNestedInput_schema_1.WorkExperienceUncheckedUpdateManyWithoutUserNestedInputObjectSchema).optional()
+}).strict();
+exports.UserUncheckedUpdateWithoutBlogsInputObjectSchema = makeSchema();
+exports.UserUncheckedUpdateWithoutBlogsInputObjectZodSchema = makeSchema();
