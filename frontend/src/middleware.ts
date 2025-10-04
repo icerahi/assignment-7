@@ -11,6 +11,7 @@ export async function middleware(req: NextRequest) {
       headers: {
         cookie: `accessToken=${token}`,
       },
+      cache: "no-store",
     }
   );
   console.log(await res.json());
