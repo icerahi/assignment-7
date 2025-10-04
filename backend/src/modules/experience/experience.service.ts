@@ -27,6 +27,17 @@ export class ExperienceService {
 
     return experience;
   }
+  //get all experience
+  async getAllExperiences() {
+    const experiences = await prisma.workExperience.findMany({});
+
+    return {
+      data: experiences,
+      meta: {
+        total: experiences.length,
+      },
+    };
+  }
 
   //update
   async updateExperience(

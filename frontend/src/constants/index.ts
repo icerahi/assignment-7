@@ -16,3 +16,26 @@ export const publicNavbarItems = [
     url: "/contact",
   },
 ];
+
+export const dashboardSidebarItems = [
+  {
+    title: "Dashboard",
+    url: "/dashboard",
+  },
+  {
+    title: "Blogs",
+    url: "/dashboard/blogs",
+  },
+  {
+    title: "Projects",
+    url: "/dashboard/projects",
+  },
+  {
+    title: "Experiences",
+    url: "/dashboard/experiences",
+  },
+  {
+    title: "Profile Settings",
+    url: "/dashboard/profile",
+  },
+];

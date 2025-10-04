@@ -37,6 +37,19 @@ export class ExperienceController {
       });
     }
   );
+  getAllExperiences = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const result = await experienceService.getAllExperiences();
+
+      return sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.OK,
+        message: "Experiences retrieved Successfully!",
+        meta: result.meta,
+        data: result.data,
+      });
+    }
+  );
 
   //update experience
   updateExperience = catchAsync(
