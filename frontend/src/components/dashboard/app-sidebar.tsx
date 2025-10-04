@@ -39,13 +39,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
-            {sidebarItems.map((item) => (
-              <SidebarMenuItem>
+            {sidebarItems.map((item, index) => (
+              <SidebarMenuItem key={index}>
                 <Link href={item.url}>
                   <SidebarMenuButton
                     // isActive={item.url === pathname}
                     tooltip={item.title}
-                    className={cn({ "bg-gray-200": item.url === pathname })}
+                    className={cn({
+                      "bg-gray-200": item.url === pathname,
+                    })}
                   >
                     <span
                       className={cn("font-medium", {
