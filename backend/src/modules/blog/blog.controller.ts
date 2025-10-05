@@ -9,7 +9,10 @@ const blogService = new BlogService();
 export class BlogController {
   getAllBlogs = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
-      const result = await blogService.getAllBlogs();
+      const query = req.query;
+      const result = await blogService.getAllBlogs(
+        query as Record<string, string>
+      );
 
       return sendResponse(res, {
         success: true,

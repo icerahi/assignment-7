@@ -29,7 +29,9 @@ export class ExperienceService {
   }
   //get all experience
   async getAllExperiences() {
-    const experiences = await prisma.workExperience.findMany({});
+    const experiences = await prisma.workExperience.findMany({
+      orderBy: { startDate: "desc" },
+    });
 
     return {
       data: experiences,
@@ -50,9 +52,13 @@ export class ExperienceService {
     if (!experience)
       throw new AppError(StatusCodes.NOT_FOUND, "Experience not found!");
 
+    const updatedData = {
+      ...payload,
+      endDate: payload.endDate ? payload.endDate : null,
+    };
     const updatedExperience = await prisma.workExperience.update({
       where: { id: experience.id },
-      data: payload,
+      data: updatedData,
     });
 
     return updatedExperience;

@@ -37,6 +37,7 @@ export class ExperienceController {
       });
     }
   );
+
   getAllExperiences = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
       const result = await experienceService.getAllExperiences();

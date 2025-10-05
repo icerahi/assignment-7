@@ -3,9 +3,23 @@ import { StatusCodes } from "http-status-codes";
 import { prisma } from "../../config/db";
 import AppError from "../../helpers/AppError";
 
+function parseBoolean(value: any): boolean {
+  if (typeof value === "boolean") return value;
+  if (typeof value === "string") {
+    return value.trim().toLowerCase() === "true";
+  }
+  return Boolean(value);
+}
+
 export class BlogService {
-  async getAllBlogs() {
-    const result = await prisma.blog.findMany();
+  async getAllBlogs(query: Record<string, string>) {
+    const where: any = {
+      published: query.published && parseBoolean(query?.published),
+    };
+
+    const result = await prisma.blog.findMany({
+      where,
+    });
 
     return {
       meta: { total: result.length },

@@ -17,43 +17,47 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { updateBlog } from "@/services/blogs/blogs.service";
+import { createBlog } from "@/services/blogs/blogs.service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
 
-const BlogEditFormSchema = z.object({
+const BlogCreateFormSchema = z.object({
   title: z.string().min(2, {
     message: "Title must be at least 2 characters.",
   }),
-  content: z.string(),
+  content: z.string().min(2, {
+    message: "content must be at least 2 characters.",
+  }),
   published: z.string().optional(),
 });
 
-type BlogEditFormValues = z.infer<typeof BlogEditFormSchema>;
+type BlogCreateFormValues = z.infer<typeof BlogCreateFormSchema>;
 
-export default function BlogEditForm({ blog }: { blog: any }) {
+export default function BlogCreateForm() {
   const router = useRouter();
-  const form = useForm<BlogEditFormValues>({
-    resolver: zodResolver(BlogEditFormSchema),
+  const form = useForm<BlogCreateFormValues>({
+    resolver: zodResolver(BlogCreateFormSchema),
     defaultValues: {
-      title: blog?.title,
-      content: blog?.content,
-      published: String(blog?.published),
+      title: "",
+      content: "",
+      published: "",
     },
   });
 
-  async function onSubmit(data: BlogEditFormValues) {
+  async function onSubmit(data: BlogCreateFormValues) {
     const payload = {
       ...data,
       published: Boolean(data.published),
     };
 
-    const toastId = toast.loading("Updating...");
+    const toastId = toast.loading("Creating...");
     try {
-      const res = await updateBlog(blog.id, payload);
+      console.log(payload);
+      const res = await createBlog(payload);
+
       if (res.success) {
         toast.success(res.message, { id: toastId });
         router.push("/dashboard/blogs");
@@ -61,7 +65,6 @@ export default function BlogEditForm({ blog }: { blog: any }) {
         toast.error(res.message ?? "Something went wrong!", { id: toastId });
       }
     } catch (err) {}
-    console.log(payload);
   }
   return (
     <Form {...form}>
@@ -105,10 +108,7 @@ export default function BlogEditForm({ blog }: { blog: any }) {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Published</FormLabel>
-              <Select
-                onValueChange={field.onChange}
-                defaultValue={String(blog?.published)}
-              >
+              <Select onValueChange={field.onChange} defaultValue="true">
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue />
@@ -130,7 +130,7 @@ export default function BlogEditForm({ blog }: { blog: any }) {
             onClick={() => router.back()}
             variant={"secondary"}
           >
-            Cancel{" "}
+            Cancel
           </Button>
           <Button type="submit">Save Changes </Button>
         </div>

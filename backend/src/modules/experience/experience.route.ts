@@ -26,9 +26,6 @@ router.patch(
 );
 
 router.delete("/delete/:id", checkAuth, experienceController.deleteExperience);
-
 router.get("/all", experienceController.getAllExperiences);
-
 router.get("/:id", experienceController.getSingleExperience);
-
 export const experienceRoutes = router;
