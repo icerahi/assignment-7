@@ -8,7 +8,7 @@ const HomePage = async () => {
   const { data } = await res.json();
 
   return (
-    <div className="flex flex-col flex-1">
+    <div className="grid grid-cols-1 mx-auto  max-w-3xl">
       <div className="pb-24">
         <AboutMe user={data} />
       </div>

@@ -10,48 +10,20 @@ import {
   TimelineSeparator,
   TimelineTitle,
 } from "@/components/ui/timeline";
+import { format } from "date-fns";
 
-const items = [
-  {
-    id: 1,
-    date: "Mar 15, 2024",
-    title: "Project Kickoff",
-    description:
-      "Initial team meeting and project scope definition. Established key milestones and resource allocation.",
-  },
-  {
-    id: 2,
-    date: "Mar 22, 2024",
-    title: "Design Phase",
-    description:
-      "Completed wireframes and user interface mockups. Stakeholder review and feedback incorporated.",
-  },
-  {
-    id: 3,
-    date: "Apr 5, 2024",
-    title: "Development Sprint",
-    description:
-      "Backend API implementation and frontend component development in progress.",
-  },
-  {
-    id: 4,
-    date: "Apr 19, 2024",
-    title: "Testing & Deployment",
-    description:
-      "Quality assurance testing, performance optimization, and production deployment preparation.",
-  },
-];
-
-export default function ExperienceCard({ data }: { data: any }) {
+export default function ExperienceTimeline({ data }: { data: any }) {
   return (
-    <Timeline defaultValue={3}>
+    <Timeline>
       {data.map((item: any) => (
         <TimelineItem key={item.id} step={item.id}>
           <TimelineHeader>
             <TimelineSeparator />
 
-            <TimelineTitle>{item.company}</TimelineTitle>
-            <TimelineDate>{item.startDate}</TimelineDate>
+            <TimelineTitle className="text-xl">{item.company}</TimelineTitle>
+            <TimelineDate>
+              {format(new Date(item.startDate), "PP")}
+            </TimelineDate>
             <TimelineIndicator />
           </TimelineHeader>
           <TimelineContent>{item.position}</TimelineContent>

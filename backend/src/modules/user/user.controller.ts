@@ -24,7 +24,7 @@ export class UserController {
   updateUser = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
       const decodedToken = req.user;
-
+      console.log("req.body", req.body);
       const payload = {
         ...req.body,
         picture: req.file?.path,
@@ -36,6 +36,20 @@ export class UserController {
         statusCode: StatusCodes.OK,
         message: "User Information updated successfully!",
         data: userInfo,
+      });
+    }
+  );
+
+  //update user
+  dashboard = catchAsync(
+    async (req: Request, res: Response, next: NextFunction) => {
+      const dashboardInfo = await userService.dashboard();
+
+      return sendResponse(res, {
+        success: true,
+        statusCode: StatusCodes.OK,
+        message: "Dashboard Information retreived successfully!",
+        data: dashboardInfo,
       });
     }
   );

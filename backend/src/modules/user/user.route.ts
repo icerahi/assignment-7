@@ -10,6 +10,7 @@ const router = Router();
 const userController = new UserController();
 
 router.get("/about-me", userController.aboutMe);
+
 router.patch(
   "/update",
   checkAuth,
@@ -17,5 +18,6 @@ router.patch(
   validateRequest(UserUpdateAPISchema),
   userController.updateUser
 );
+router.get("/dashboard", checkAuth, userController.dashboard);
 
 export const userRoutes = router;

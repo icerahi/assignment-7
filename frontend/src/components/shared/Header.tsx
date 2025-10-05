@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 
-export function Header() {
+export async function Header() {
   const pathname = usePathname();
 
   const navItems = publicNavbarItems;

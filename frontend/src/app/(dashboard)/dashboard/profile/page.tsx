@@ -1,13 +1,17 @@
+import ProfileInfo from "@/components/dashboard/profile/ProfileInfo";
+import { Card, CardTitle } from "@/components/ui/card";
 import { aboutMe } from "@/services/user/user.service";
 
 const ProfilePage = async () => {
-  try {
-    const res = await aboutMe();
-    const { data } = res;
-    console.log({ data });
-  } catch (err) {
-    console.log(err);
-  }
-  return <div>ProfilePage</div>;
+  const res = await aboutMe();
+  const { data } = res;
+  return (
+    <div className="flex justify-center">
+      <Card className="w-3/4 p-10">
+        <CardTitle className="text-center">About Me Information</CardTitle>
+        <ProfileInfo data={data} />
+      </Card>
+    </div>
+  );
 };
 export default ProfilePage;

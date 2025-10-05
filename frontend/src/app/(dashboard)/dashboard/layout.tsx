@@ -7,19 +7,23 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { logout } from "@/services/auth/auth.service";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
+import toast from "react-hot-toast";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
 
   const handleLogout = async () => {
-    //   const res = await logout(undefined).unwrap();
-    //   if (res.success) {
-    //     toast.success("Logout successfully");
-    //     navigate("/");
-    //     dispatch(authApi.util.resetApiState());
-    //   }
+    const toastId = toast.loading("Logging out....");
+    const res = await logout();
+    if (res.success) {
+      toast.success(res.message, { id: toastId });
+      router.refresh();
+    } else {
+      toast.error(res.message ?? "Something went wrong", { id: toastId });
+    }
   };
 
   return (

@@ -11,10 +11,6 @@ export const publicNavbarItems = [
     title: "Blogs",
     url: "/blogs",
   },
-  {
-    title: "Contact",
-    url: "/contact",
-  },
 ];
 
 export const dashboardSidebarItems = [
