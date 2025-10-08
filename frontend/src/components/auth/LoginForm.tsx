@@ -1,6 +1,7 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { useApp } from "@/providers/AppProvider";
 import { login } from "@/services/auth/auth.service";
 import { useRouter } from "next/navigation";
 import { FieldValues, useForm } from "react-hook-form";
@@ -32,6 +33,7 @@ const LoginForm = () => {
   });
 
   const router = useRouter();
+  const { setUser } = useApp();
 
   const onSubmit = async (values: FieldValues) => {
     const toastId = toast.loading("Checking credentials...");
@@ -39,6 +41,7 @@ const LoginForm = () => {
       const res = await login(values);
 
       if (res.statusCode === 200) {
+        setUser(res?.user);
         toast.success("Login successful", { id: toastId });
         router.push("/dashboard");
       } else {

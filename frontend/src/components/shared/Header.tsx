@@ -2,15 +2,18 @@
 
 import { publicNavbarItems } from "@/constants";
 import { cn } from "@/lib/utils";
+import { useApp } from "@/providers/AppProvider";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 
-export async function Header() {
+export function Header() {
   const pathname = usePathname();
 
   const navItems = publicNavbarItems;
 
+  const { user } = useApp();
+  console.log(user);
   return (
     <header className="fixed top-0 z-10 flex items-center justify-center w-full mx-auto bg-white dark:bg-black border-b py-2">
       <div className="flex items-center justify-between w-full md:max-w-3xl mx-4 ">
@@ -35,6 +38,19 @@ export async function Header() {
             </Button>
           ))}
         </nav>
+
+        {user?.email && (
+          <Button asChild variant="ghost" size={null}>
+            <Link
+              href="/dashboard"
+              className={cn(
+                "relative block me-2 py-2 md:px-4 px-2 font-semibold"
+              )}
+            >
+              Dashboard
+            </Link>
+          </Button>
+        )}
       </div>
     </header>
   );

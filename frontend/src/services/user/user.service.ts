@@ -1,3 +1,4 @@
+"use server";
 import { cookies } from "next/headers";
 import toast from "react-hot-toast";
 
@@ -15,6 +16,8 @@ export const aboutMe = async () => {
 };
 
 export const updateProfile = async (picture: File | null, data: any) => {
+  const cookieHeader = cookies().toString();
+
   const profileInfo = {
     ...data,
     skills:
@@ -36,22 +39,6 @@ export const updateProfile = async (picture: File | null, data: any) => {
       method: "PATCH",
 
       body: formData,
-      credentials: "include",
-    }
-  );
-
-  if (!res.ok) {
-    toast.error("failed to fetch data");
-  }
-
-  return await res.json();
-};
-
-export const dashboardData = async () => {
-  const cookieHeader = cookies().toString();
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/dashboard`,
-    {
       headers: {
         Cookie: cookieHeader, // forward cookies to backend
       },

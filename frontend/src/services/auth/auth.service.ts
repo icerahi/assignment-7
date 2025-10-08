@@ -1,13 +1,13 @@
 import toast from "react-hot-toast";
 
-export const login = async (data: Record<string, any>) => {
+import { FieldValues } from "react-hook-form";
+
+export const login = async (formData: FieldValues) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" },
     credentials: "include",
+    body: JSON.stringify(formData),
   });
 
   return await res.json();

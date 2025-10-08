@@ -5,7 +5,7 @@ const CreateBlog = () => {
   return (
     <div className="flex justify-center">
       <Card className="w-3/4 p-10">
-        <CardTitle className="text-center">Create A New Blog</CardTitle>
+        <CardTitle className="text-center">Create A New Experience</CardTitle>
 
         <BlogCreateForm />
       </Card>

@@ -1,4 +1,5 @@
 "use client";
+import { createProject } from "@/actions/project.action";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,7 +12,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FileMetadata } from "@/hooks/use-file-upload";
-import { createProject } from "@/services/projects/projects.service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

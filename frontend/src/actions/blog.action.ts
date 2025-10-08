@@ -1,0 +1,63 @@
+"use server";
+
+import { cookies } from "next/headers";
+import toast from "react-hot-toast";
+
+export const updateBlog = async (id: string, data: Record<string, any>) => {
+  const cookieHeader = (await cookies()).toString();
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/blog/${id}`, {
+    method: "PATCH",
+    headers: {
+      cookie: cookieHeader,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    toast.error("failed to fetch data");
+  }
+
+  return await res.json();
+};
+
+export const createBlog = async (data: Record<string, any>) => {
+  const cookieHeader = (await cookies()).toString();
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/blog/create`,
+    {
+      method: "POST",
+      headers: {
+        cookie: cookieHeader,
+
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+      credentials: "include",
+    }
+  );
+
+  if (!res.ok) {
+    toast.error("failed to fetch data");
+  }
+
+  return await res.json();
+};
+
+export const deleteBlog = async (id: number) => {
+  const cookieHeader = (await cookies()).toString();
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/blog/${id}`, {
+    method: "DELETE",
+    headers: {
+      cookie: cookieHeader,
+    },
+  });
+
+  if (!res.ok) {
+    toast.error("failed to fetch data");
+  }
+
+  return await res.json();
+};

@@ -1,13 +1,13 @@
-import ExperienceCreateForm from "@/components/dashboard/experiences/ExperienceCreateForm";
+import ProjectCreateForm from "@/components/dashboard/projects/ProjectCreateForm";
 import { Card, CardTitle } from "@/components/ui/card";
 
 const CreateProject = () => {
   return (
     <div className="flex justify-center">
       <Card className="w-3/4 p-10">
-        <CardTitle className="text-center">Add A Job Experience</CardTitle>
+        <CardTitle className="text-center">Add A New Project</CardTitle>
 
-        <ExperienceCreateForm />
+        <ProjectCreateForm />
       </Card>
     </div>
   );

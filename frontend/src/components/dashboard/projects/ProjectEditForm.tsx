@@ -1,4 +1,5 @@
 "use client";
+import { updateProject } from "@/actions/project.action";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,7 +12,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FileMetadata } from "@/hooks/use-file-upload";
-import { updateProject } from "@/services/projects/projects.service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

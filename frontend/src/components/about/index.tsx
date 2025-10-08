@@ -55,7 +55,10 @@ export async function AboutMe({ user }: { user: any }) {
           <h2 className="text-2xl font-bold"> Skills:</h2>
           <h3>
             {user.skills.map((skill: string) => (
-              <span className=""> {skill} </span>
+              <span key={skill} className="">
+                {" "}
+                {skill}{" "}
+              </span>
             ))}
           </h3>
         </div>

@@ -1,4 +1,5 @@
 "use client";
+import { createBlog } from "@/actions/blog.action";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -17,7 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { createBlog } from "@/services/blogs/blogs.service";
+import { parseBoolean } from "@/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -50,12 +51,11 @@ export default function BlogCreateForm() {
   async function onSubmit(data: BlogCreateFormValues) {
     const payload = {
       ...data,
-      published: Boolean(data.published),
+      published: parseBoolean(data.published),
     };
 
     const toastId = toast.loading("Creating...");
     try {
-      console.log(payload);
       const res = await createBlog(payload);
 
       if (res.success) {

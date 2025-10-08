@@ -1,4 +1,5 @@
 "use client";
+import { updateBlog } from "@/actions/blog.action";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -17,7 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { updateBlog } from "@/services/blogs/blogs.service";
+import { parseBoolean } from "@/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -48,7 +49,7 @@ export default function BlogEditForm({ blog }: { blog: any }) {
   async function onSubmit(data: BlogEditFormValues) {
     const payload = {
       ...data,
-      published: Boolean(data.published),
+      published: parseBoolean(data.published),
     };
 
     const toastId = toast.loading("Updating...");

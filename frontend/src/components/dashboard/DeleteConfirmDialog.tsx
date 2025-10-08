@@ -1,4 +1,7 @@
 "use client";
+import { deleteBlog } from "@/actions/blog.action";
+import { deleteExperience } from "@/actions/experience.actions";
+import { deleteProject } from "@/actions/project.action";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,9 +14,6 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { deleteBlog } from "@/services/blogs/blogs.service";
-import { deleteExperience } from "@/services/experiences/experiences.service";
-import { deleteProject } from "@/services/projects/projects.service";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 

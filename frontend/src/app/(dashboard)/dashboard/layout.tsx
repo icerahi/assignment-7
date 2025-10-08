@@ -8,6 +8,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { logout } from "@/services/auth/auth.service";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import toast from "react-hot-toast";
@@ -17,6 +18,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
   const handleLogout = async () => {
     const toastId = toast.loading("Logging out....");
+
     const res = await logout();
     if (res.success) {
       toast.success(res.message, { id: toastId });
@@ -40,7 +42,9 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
               />
             </div>
             <div className="flex items-center gap-4">
-              {" "}
+              <Button>
+                <Link href="/">Visit Website</Link>
+              </Button>
               <Button
                 onClick={handleLogout}
                 className="cursor-pointer font-bold"

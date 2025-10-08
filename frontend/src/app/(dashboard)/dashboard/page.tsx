@@ -1,8 +1,12 @@
+import { dashboardData } from "@/actions/user.actions";
 import { DashboardCard } from "@/components/dashboard/dashboard/DashboardCard";
-import { dashboardData } from "@/services/user/user.service";
+import toast from "react-hot-toast";
 
 export default async function Dashboard() {
   const res = await dashboardData();
+  if (!res.success) {
+    toast.error(res.message ?? "Something went wrong to fetch dashboard ");
+  }
   const { data } = res;
 
   return (

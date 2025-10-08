@@ -11,7 +11,7 @@ const ExperiencesPage = async () => {
     <div className="py-4">
       <div className="flex flex-col">
         <Button asChild>
-          <Link href="/dashboard/projects/create">Create New +</Link>
+          <Link href="/dashboard/experiences/create">Create New +</Link>
         </Button>
         <h2 className="text-2xl my-4">All Experiences</h2>
       </div>
