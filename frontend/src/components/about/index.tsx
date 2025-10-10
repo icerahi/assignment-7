@@ -4,7 +4,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 
 export async function AboutMe({ user }: { user: any }) {
-  console.log(user);
   return (
     <>
       <div className="flex flex-row">
@@ -31,6 +30,7 @@ export async function AboutMe({ user }: { user: any }) {
         <h1 className="flex dark:text-neutral-100 text-neutral-900 text-4xl font-bold text-balance capitalize">
           {user.name}
         </h1>
+
         <Button
           variant="default"
           size={null}
@@ -46,6 +46,9 @@ export async function AboutMe({ user }: { user: any }) {
             Available
           </Link>
         </Button>
+      </div>
+      <div className="text-sm italic font-semibold">
+        <p>{user.email}</p>
       </div>
 
       <div className="flex flex-col font-mono gap-4 dark:text-neutral-200 text-neutral-800 text-pretty my-4">
@@ -64,7 +67,7 @@ export async function AboutMe({ user }: { user: any }) {
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold">Career</h3>
+          <h3 className="text-2xl font-bold">Career:</h3>
 
           <div className="py-5">
             <ExperienceTimeline data={user.experiences} />

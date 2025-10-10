@@ -14,21 +14,26 @@ export const allBlogs = async (filter?: Record<string, any>) => {
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/blog/all?${queryParams}`,
-    {}
+    {
+      next: {
+        tags: ["BLOGS"],
+      },
+    }
   );
 
   if (!res.ok) {
-    toast.error("failed to fetch data");
+    throw new Error("Failed to fetch blogs");
   }
 
   return await res.json();
 };
 
 export const getBlog = async (id: string) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_URL}/blog/${id}`,
-    {}
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/blog/${id}`, {
+    next: {
+      tags: [`BLOG-${id}`],
+    },
+  });
 
   if (!res.ok) {
     toast.error("failed to fetch data");

@@ -2,18 +2,26 @@
 
 import { publicNavbarItems } from "@/constants";
 import { cn } from "@/lib/utils";
-import { useApp } from "@/providers/AppProvider";
+import { authValidate } from "@/services/auth/auth.service";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-
 export function Header() {
+  const [user, setUser] = useState<Record<string, any> | null>(null);
+
   const pathname = usePathname();
 
   const navItems = publicNavbarItems;
 
-  const { user } = useApp();
-  console.log(user);
+  useEffect(() => {
+    const checkAuth = async () => {
+      const res = await authValidate();
+      setUser(res?.data);
+    };
+    checkAuth();
+  }, []);
+
   return (
     <header className="fixed top-0 z-10 flex items-center justify-center w-full mx-auto bg-white dark:bg-black border-b py-2">
       <div className="flex items-center justify-between w-full md:max-w-3xl mx-4 ">

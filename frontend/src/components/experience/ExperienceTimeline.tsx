@@ -22,7 +22,8 @@ export default function ExperienceTimeline({ data }: { data: any }) {
 
             <TimelineTitle className="text-xl">{item.company}</TimelineTitle>
             <TimelineDate>
-              {format(new Date(item.startDate), "PP")}
+              {format(new Date(item.startDate), "PP")} -{" "}
+              {format(new Date(item.endDate), "PP")}
             </TimelineDate>
             <TimelineIndicator />
           </TimelineHeader>

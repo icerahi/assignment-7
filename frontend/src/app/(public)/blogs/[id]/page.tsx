@@ -1,5 +1,12 @@
 import BlogDetailsCard from "@/components/blogs/BlogDetails";
-import { getBlog } from "@/services/blogs/blogs.service";
+import { allBlogs, getBlog } from "@/services/blogs/blogs.service";
+
+export const generateStaticParams = async () => {
+  const res = await allBlogs();
+  const { data: blogs } = res;
+
+  return blogs.map((blog: any) => ({ id: String(blog.id) }));
+};
 
 const BlogDetailsPage = async ({
   params,

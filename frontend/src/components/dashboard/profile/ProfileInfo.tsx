@@ -1,4 +1,5 @@
 "use client";
+import { updateProfile } from "@/actions/user.actions";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,7 +13,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FileMetadata } from "@/hooks/use-file-upload";
-import { updateProfile } from "@/services/user/user.service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

@@ -35,9 +35,11 @@ export default function ProjectCard({ project }: { project: any }) {
 
         <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
           {String(project.description).substring(0, 70)}....{" "}
-          <span className="text-blue-600 dark:text-blue-400 cursor-pointer font-semibold text-sm hover:underline">
-            See More →
-          </span>
+          <Link href={`/projects/${project.id}`}>
+            <span className="text-blue-600 dark:text-blue-400 cursor-pointer font-semibold text-sm hover:underline">
+              See More →
+            </span>
+          </Link>
         </p>
 
         <div className="flex items-center   gap-2 mb-4  ">

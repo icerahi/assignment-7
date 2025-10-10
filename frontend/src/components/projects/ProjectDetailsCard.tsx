@@ -14,7 +14,7 @@ export default async function ProjectDetailsCard({
 
   return (
     <div className="max-w-4xl mx-auto px-4 mb-10">
-      <h1 className="text-5xl font-bold mb-6">{project?.title}</h1>
+      <h1 className="text-5xl font-bold mb-6 capitalize">{project?.title}</h1>
 
       {project.thumbnail && (
         <div className="relative h-80 w-full overflow-hidden">

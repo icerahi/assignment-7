@@ -29,3 +29,20 @@ export const logout = async () => {
 
   return await res.json();
 };
+
+export const authValidate = async () => {
+  console.log("cookie Header");
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/validate`,
+    {
+      credentials: "include",
+    }
+  );
+  const data = await res.json();
+
+  if (!data.success) {
+    return null;
+  }
+
+  return data;
+};

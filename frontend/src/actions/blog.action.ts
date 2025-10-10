@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import toast from "react-hot-toast";
 
@@ -34,15 +35,20 @@ export const createBlog = async (data: Record<string, any>) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-      credentials: "include",
     }
   );
 
   if (!res.ok) {
     toast.error("failed to fetch data");
   }
+  const resData = await res.json();
+  revalidateTag("BLOGS");
+  revalidateTag(`BLOG-${resData?.data?.id}`);
+  revalidatePath("/blogs");
+  revalidatePath("/dashboard/blogs");
+  revalidatePath(`/blogs/${resData?.data?.id}`);
 
-  return await res.json();
+  return resData;
 };
 
 export const deleteBlog = async (id: number) => {

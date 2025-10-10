@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import toast from "react-hot-toast";
 
@@ -38,11 +39,18 @@ export const createProject = async (data: FormData) => {
     }
   );
 
+  const resData = await res.json();
   if (!res.ok) {
-    toast.error("failed to fetch data");
+    throw new Error("failed to fetch data");
   }
 
-  return await res.json();
+  revalidateTag("PROJECTS");
+  revalidateTag(`PROJECT-${resData?.data?.id}`);
+  revalidatePath("/projects");
+  revalidatePath("/dashboard/projects");
+  revalidatePath(`/projects/${resData?.data?.id}`);
+
+  return resData;
 };
 
 export const deleteProject = async (id: number) => {

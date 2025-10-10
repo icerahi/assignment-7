@@ -1,4 +1,3 @@
-import { AppProvider } from "@/providers/AppProvider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
@@ -29,7 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased w-full`}
       >
-        <AppProvider>{children}</AppProvider>
+        {children}
         <Toaster />
       </body>
     </html>

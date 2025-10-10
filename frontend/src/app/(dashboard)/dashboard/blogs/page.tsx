@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { allBlogs } from "@/services/blogs/blogs.service";
 import Link from "next/link";
 
+export const dynamic = "force-static";
+
 const BlogPage = async () => {
   const res = await allBlogs();
 

@@ -44,7 +44,7 @@ export default function BlogCreateForm() {
     defaultValues: {
       title: "",
       content: "",
-      published: "",
+      published: "true",
     },
   });
 
@@ -53,6 +53,8 @@ export default function BlogCreateForm() {
       ...data,
       published: parseBoolean(data.published),
     };
+
+    console.log("create blog", data);
 
     const toastId = toast.loading("Creating...");
     try {
