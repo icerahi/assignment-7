@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
+import RichTextDisplay from "../RichTextDisplay";
 
 export default function BlogCard({ blog }: { blog: any }) {
   return (
@@ -15,19 +16,23 @@ export default function BlogCard({ blog }: { blog: any }) {
           </h3>
         </Link>
 
-        <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
-          {blog?.content?.substring(0, 70)}...
-          <Link href={`/blogs/${blog.id}`}>
-            <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm hover:underline">
-              Read More →
-            </span>
-          </Link>
-        </p>
-
+        <div className="text-gray-700 dark:text-gray-300 mb-4 ">
+          <RichTextDisplay
+            className="font-mono"
+            html={blog?.content?.substring(0, 150) + "..."}
+          />
+        </div>
         <div className="flex items-center justify-between mb-4">
           <span className="text-gray-500 dark:text-gray-400 text-sm">
             {blog.view} views
           </span>
+
+          <Link
+            href={`/blogs/${blog.id}`}
+            className="text-blue-600  dark:text-blue-400 font-semibold text-sm hover:underline"
+          >
+            Read More →
+          </Link>
         </div>
       </div>
     </div>

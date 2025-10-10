@@ -1,5 +1,3 @@
-import toast from "react-hot-toast";
-
 export const allProjects = async () => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/project/all`,
@@ -11,7 +9,7 @@ export const allProjects = async () => {
   );
 
   if (!res.ok) {
-    toast.error("failed to fetch data");
+    throw new Error("Failed to fetch data");
   }
 
   return await res.json();
@@ -28,7 +26,7 @@ export const getProject = async (id: string) => {
   );
 
   if (!res.ok) {
-    toast.error("failed to fetch data");
+    throw new Error("Failed to fetch data");
   }
 
   return await res.json();

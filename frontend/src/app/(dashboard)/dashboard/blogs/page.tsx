@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { allBlogs } from "@/services/blogs/blogs.service";
 import Link from "next/link";
 
-export const dynamic = "force-static";
+export const revalidate = 0;
 
 const BlogPage = async () => {
   const res = await allBlogs();
@@ -15,7 +15,7 @@ const BlogPage = async () => {
         <Button asChild>
           <Link href="/dashboard/blogs/create">Create New +</Link>
         </Button>
-        <h2 className="text-2xl my-4">All Blogs</h2>
+        <h2 className="text-2xl my-4 text-center">All Blogs</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 mx-auto gap-5">

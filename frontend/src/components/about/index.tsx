@@ -15,7 +15,7 @@ export async function AboutMe({ user }: { user: any }) {
         >
           <Avatar className="size-40 shadow border my-2">
             <AvatarImage
-              className="object-cover"
+              className="object-contain"
               alt={user.name}
               src={user.picture}
             />
@@ -47,22 +47,33 @@ export async function AboutMe({ user }: { user: any }) {
           </Link>
         </Button>
       </div>
-      <div className="text-sm italic font-semibold">
+      <div className="text-lg italic font-semibold">
         <p>{user.email}</p>
       </div>
 
       <div className="flex flex-col font-mono gap-4 dark:text-neutral-200 text-neutral-800 text-pretty my-4">
-        <h2>{user.bio}</h2>
+        <h2 className="text-justify">{user.bio}</h2>
 
         <div>
-          <h2 className="text-2xl font-bold"> Skills:</h2>
+          <h2 className="text-2xl font-bold pb-2"> Skills:</h2>
           <h3>
-            {user.skills.map((skill: string) => (
-              <span key={skill} className="">
-                {" "}
-                {skill}{" "}
-              </span>
-            ))}
+            {user.skills.map((skill: string, index: number) => {
+              const colors = [
+                "bg-red-200",
+                "bg-blue-200",
+                "bg-green-200",
+                "bg-yellow-200",
+                "bg-purple-200",
+                "bg-pink-200",
+                "bg-indigo-200",
+              ];
+              const colorClass = colors[index % colors.length];
+              return (
+                <span key={skill} className={`${colorClass} p-1 m-1 font-bold`}>
+                  {skill}
+                </span>
+              );
+            })}
           </h3>
         </div>
 

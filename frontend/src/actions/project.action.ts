@@ -2,7 +2,6 @@
 
 import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
-import toast from "react-hot-toast";
 
 export const updateProject = async (id: string, data: FormData) => {
   const cookieHeader = (await cookies()).toString();
@@ -17,11 +16,17 @@ export const updateProject = async (id: string, data: FormData) => {
     }
   );
 
+  const resData = await res.json();
   if (!res.ok) {
-    toast.error("failed to fetch data");
+    throw new Error("failed to fetch data");
   }
 
-  return await res.json();
+  revalidateTag("PROJECTS");
+  revalidateTag(`PROJECT-${resData?.data?.id}`);
+  revalidatePath("/projects");
+  revalidatePath(`/projects/${resData?.data?.id}`);
+
+  return resData;
 };
 
 export const createProject = async (data: FormData) => {
@@ -47,7 +52,6 @@ export const createProject = async (data: FormData) => {
   revalidateTag("PROJECTS");
   revalidateTag(`PROJECT-${resData?.data?.id}`);
   revalidatePath("/projects");
-  revalidatePath("/dashboard/projects");
   revalidatePath(`/projects/${resData?.data?.id}`);
 
   return resData;
@@ -65,9 +69,15 @@ export const deleteProject = async (id: number) => {
     }
   );
 
+  const resData = await res.json();
   if (!res.ok) {
-    toast.error("failed to fetch data");
+    throw new Error("failed to fetch data");
   }
 
-  return await res.json();
+  revalidateTag("PROJECTS");
+  revalidateTag(`PROJECT-${id}`);
+  revalidatePath("/projects");
+  revalidatePath(`/projects/${id}`);
+
+  return resData;
 };

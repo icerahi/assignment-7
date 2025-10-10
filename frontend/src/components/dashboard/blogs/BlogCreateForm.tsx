@@ -17,13 +17,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { parseBoolean } from "@/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+
 import { z } from "zod";
+import RichTextEditor from "../RichTextEditor";
 
 const BlogCreateFormSchema = z.object({
   title: z.string().min(2, {
@@ -53,7 +54,6 @@ export default function BlogCreateForm() {
       ...data,
       published: parseBoolean(data.published),
     };
-
     console.log("create blog", data);
 
     const toastId = toast.loading("Creating...");
@@ -93,11 +93,7 @@ export default function BlogCreateForm() {
             <FormItem>
               <FormLabel>Content</FormLabel>
               <FormControl>
-                <Textarea
-                  placeholder="Tell us a little bit about yourself"
-                  className="resize-none"
-                  {...field}
-                />
+                <RichTextEditor name="content" control={form.control} />
               </FormControl>
 
               <FormMessage />

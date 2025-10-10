@@ -10,7 +10,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { FileMetadata } from "@/hooks/use-file-upload";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -19,6 +18,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
 import ImageUpload from "../ImageUpload";
+import RichTextEditor from "../RichTextEditor";
 
 const ProjectCreateFormSchema = z.object({
   title: z.string().min(2, {
@@ -125,11 +125,7 @@ export default function ProjectCreateForm() {
             <FormItem>
               <FormLabel>Project Description</FormLabel>
               <FormControl>
-                <Textarea
-                  placeholder="Project Description"
-                  className="resize-none"
-                  {...field}
-                />
+                <RichTextEditor name="description" control={form.control} />
               </FormControl>
 
               <FormMessage />
@@ -144,11 +140,7 @@ export default function ProjectCreateForm() {
             <FormItem>
               <FormLabel>Project Features</FormLabel>
               <FormControl>
-                <Textarea
-                  placeholder="Project Features"
-                  className="resize-none"
-                  {...field}
-                />
+                <RichTextEditor name="features" control={form.control} />
               </FormControl>
 
               <FormMessage />

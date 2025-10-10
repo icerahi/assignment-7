@@ -2,6 +2,19 @@ import BlogEditForm from "@/components/dashboard/blogs/BlogEditForm";
 import { Card, CardTitle } from "@/components/ui/card";
 import { getBlog } from "@/services/blogs/blogs.service";
 
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
+  const { id } = await params;
+  const { data: blog } = await getBlog(id);
+  return {
+    title: blog?.title,
+    description: blog?.content,
+  };
+};
+
 const BlogEditPage = async ({
   params,
 }: {

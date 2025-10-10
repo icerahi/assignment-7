@@ -1,7 +1,6 @@
 "use server";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
-import toast from "react-hot-toast";
 
 export const updateExperience = async (
   id: string,
@@ -21,8 +20,11 @@ export const updateExperience = async (
   );
 
   if (!res.ok) {
-    toast.error("failed to fetch data");
+    throw new Error("failed to fetch data");
   }
+
+  revalidateTag("EXPERIENCES");
+  revalidatePath("/");
 
   return await res.json();
 };
@@ -69,8 +71,11 @@ export const deleteExperience = async (id: number) => {
   );
 
   if (!res.ok) {
-    toast.error("failed to fetch data");
+    throw new Error("failed to fetch data");
   }
+
+  revalidateTag("EXPERIENCES");
+  revalidatePath("/");
 
   return await res.json();
 };

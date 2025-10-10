@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import RichTextDisplay from "@/components/RichTextDisplay";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,16 +34,21 @@ export default function ProjectCard({ project }: { project: any }) {
           </h3>
         </Link>
 
-        <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
-          {String(project.description).substring(0, 70)}....{" "}
-          <Link href={`/projects/${project.id}`}>
-            <span className="text-blue-600 dark:text-blue-400 cursor-pointer font-semibold text-sm hover:underline">
-              See More →
-            </span>
+        <div className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3 inline">
+          <RichTextDisplay
+            className="font-mono inline"
+            html={String(project?.description).substring(0, 100)}
+          />
+          ...
+          <Link
+            href={`/projects/${project.id}`}
+            className="text-blue-600  dark:text-blue-400 cursor-pointer font-semibold text-sm hover:underline"
+          >
+            See More →
           </Link>
-        </p>
+        </div>
 
-        <div className="flex items-center   gap-2 mb-4  ">
+        <div className="flex items-center   gap-2 my-4 ">
           <Link
             className="hover:underline text-sm font-semibold text-white bg-blue-500 py-1 px-3 rounded-3xl"
             target="blank"

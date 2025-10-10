@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
+import RichTextDisplay from "../RichTextDisplay";
 
 export default async function ProjectDetailsCard({
   project,
@@ -13,27 +14,27 @@ export default async function ProjectDetailsCard({
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 mb-10">
+    <div className="max-w-4xl px-4 mb-10">
       <h1 className="text-5xl font-bold mb-6 capitalize">{project?.title}</h1>
 
       {project.thumbnail && (
-        <div className="relative h-80 w-full overflow-hidden">
+        <div className="relative h-90 w-full overflow-hidden">
           <Image
             src={project.thumbnail}
             alt={project.title}
             fill
-            className="rounded-lg object-cover shadow-md"
+            className="rounded-lg object-contain shadow-md"
           />
         </div>
       )}
 
       <article className="prose prose-lg max-w-none my-4">
-        <p>{project.description}</p>
+        <RichTextDisplay html={project?.description} />
       </article>
 
       <article className="prose prose-lg max-w-none my-4">
-        <h2 className="text-lg">Features</h2>
-        <p>{project.features}</p>
+        <h2 className="text-lg font-bold my-2">Features:</h2>
+        <RichTextDisplay html={project?.features} />
       </article>
     </div>
   );

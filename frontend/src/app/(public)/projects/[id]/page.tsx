@@ -16,7 +16,7 @@ const ProjectDetailsPage = async ({
   const { id } = await params;
   const res = await getProject(id);
   return (
-    <div className="flex font-mono text-pretty justify-center">
+    <div className="grid grid-cols-1 gap-4 mx-auto font-mono text-pretty  w-[60vw]">
       <ProjectDetailsCard project={res?.data} />
     </div>
   );

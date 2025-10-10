@@ -19,7 +19,13 @@ export const updateBlog = async (id: string, data: Record<string, any>) => {
     toast.error("failed to fetch data");
   }
 
-  return await res.json();
+  const resData = await res.json();
+  revalidateTag("BLOGS");
+  revalidateTag(`BLOG-${resData?.data?.id}`);
+  revalidatePath("/blogs");
+  revalidatePath(`/blogs/${resData?.data?.id}`);
+
+  return resData;
 };
 
 export const createBlog = async (data: Record<string, any>) => {
@@ -39,13 +45,12 @@ export const createBlog = async (data: Record<string, any>) => {
   );
 
   if (!res.ok) {
-    toast.error("failed to fetch data");
+    throw new Error("failed to fetch data");
   }
   const resData = await res.json();
   revalidateTag("BLOGS");
   revalidateTag(`BLOG-${resData?.data?.id}`);
   revalidatePath("/blogs");
-  revalidatePath("/dashboard/blogs");
   revalidatePath(`/blogs/${resData?.data?.id}`);
 
   return resData;
@@ -62,8 +67,12 @@ export const deleteBlog = async (id: number) => {
   });
 
   if (!res.ok) {
-    toast.error("failed to fetch data");
+    throw new Error("failed to fetch data");
   }
+  revalidateTag("BLOGS");
+  revalidateTag(`BLOG-${id}`);
+  revalidatePath("/blogs");
+  revalidatePath(`/blogs/${id}`);
 
   return await res.json();
 };

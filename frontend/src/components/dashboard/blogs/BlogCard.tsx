@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import RichTextDisplay from "@/components/RichTextDisplay";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -17,17 +18,21 @@ export default function BlogCard({ blog }: { blog: any }) {
           {blog.published ? "Published" : "Unpublished"}
         </span>
         <Link
-          href={`/dashboard/blogs/${blog.id}`}
+          href={`/dashboard/blogs/preview/${blog.id}`}
           className="block group transform hover:-translate-y-1 transition-transform duration-300"
         >
           {" "}
-          <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors">
+          <h3 className="text-2xl font-bold mb-2 group-hover:text-blue-600 transition-colors">
             {blog.title}
           </h3>
         </Link>
 
         <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
-          {blog?.content?.substring(0, 70)}...
+          <RichTextDisplay
+            className="font-mono"
+            html={blog?.content?.substring(0, 100)}
+          />
+          ...
         </p>
 
         <div className="flex items-center justify-between mb-4">
@@ -44,9 +49,9 @@ export default function BlogCard({ blog }: { blog: any }) {
             <DeleteConfirmDialog id={blog?.id} scope="blog" />
           </div>
           <div className="text-right">
-            <Link href={""}>
+            <Link href={`/dashboard/blogs/preview/${blog.id}`}>
               <span className="text-blue-600 dark:text-blue-400 font-semibold text-sm hover:underline">
-                Read More →
+                Preview →
               </span>
             </Link>
           </div>

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
 import Link from "next/link";
+import RichTextDisplay from "../RichTextDisplay";
 
 export default function ProjectCard({ project }: { project: any }) {
   return (
@@ -11,23 +12,24 @@ export default function ProjectCard({ project }: { project: any }) {
           className="block group transform hover:-translate-y-1 transition-transform duration-300"
         >
           {" "}
-          <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors">
+          <h3 className="capitalize text-2xl font-bold mb-2 group-hover:text-blue-600 transition-colors">
             {project.title}
           </h3>
         </Link>
 
-        <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
-          {String(project.description).substring(0, 70)}...{" "}
+        <div className="mb-4">
+          <RichTextDisplay
+            className="font-mono inline"
+            html={project?.description?.substring(0, 100) + "..."}
+          />
+
           <Link
             href={`/projects/${project.id}`}
-            className="  group transform hover:-translate-y-1 transition-transform duration-300"
+            className="text-blue-600 inline  dark:text-blue-400 cursor-pointer font-semibold text-sm hover:underline"
           >
-            {" "}
-            <span className="text-blue-600 dark:text-blue-400 cursor-pointer font-semibold text-sm hover:underline">
-              See More →
-            </span>
+            See More →
           </Link>
-        </p>
+        </div>
 
         <div className="flex items-center   gap-2 mb-4  ">
           <Link
@@ -51,12 +53,12 @@ export default function ProjectCard({ project }: { project: any }) {
       </div>
 
       {project.thumbnail && (
-        <div className="relative h-30 md:h-full w-full md:w-1/3">
+        <div className="relative h-30 md:h-full w-full md:w-30">
           <Image
             src={project.thumbnail}
             alt={project.title}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            className="object-contain group-hover:scale-105 transition-transform duration-300"
           />
         </div>
       )}

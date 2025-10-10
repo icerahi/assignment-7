@@ -34,7 +34,7 @@ export function DeleteConfirmDialog({ id, scope }: IParams) {
         res = await deleteBlog(id);
         if (res?.success) {
           toast.success(res?.message, { id: toastId });
-          router.refresh();
+          router.push("/dashboard/blogs");
         } else {
           toast.error(res.message ?? "Something went wrong!", { id: toastId });
         }
@@ -44,7 +44,7 @@ export function DeleteConfirmDialog({ id, scope }: IParams) {
         res = await deleteProject(id);
         if (res?.success) {
           toast.success(res?.message, { id: toastId });
-          router.refresh();
+          router.push("/dashboard/projects");
         } else {
           toast.error(res.message ?? "Something went wrong!", { id: toastId });
         }
@@ -54,7 +54,7 @@ export function DeleteConfirmDialog({ id, scope }: IParams) {
         res = await deleteExperience(id);
         if (res?.success) {
           toast.success(res?.message, { id: toastId });
-          router.refresh();
+          router.push("/dashboard/experience");
         } else {
           toast.error(res.message ?? "Something went wrong!", { id: toastId });
         }
