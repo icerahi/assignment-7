@@ -31,7 +31,7 @@ const BlogPreviewPage = async ({
 
   return (
     <div className="flex justify-center">
-      <Card className="relative p-10">
+      <Card className="relative p-10 w-[70vw]">
         <div className="flex justify-between gap-1">
           <BackButton />
           <CardTitle className="text-center"> Blog Preview</CardTitle>

@@ -52,7 +52,7 @@ export default function ProfileInfo({ data }: { data: any }) {
     const toastId = toast.loading("Updating...");
     try {
       const res = await updateProfile(image as File, data);
-      console.log(res);
+
       if (res.success) {
         toast.success(res.message, { id: toastId });
         router.push("/dashboard");
@@ -63,11 +63,10 @@ export default function ProfileInfo({ data }: { data: any }) {
   }
   return (
     <Form {...form}>
-      <div className="grid grid-cols-2 justify-start items-center">
-        {" "}
-        <Avatar className="size-50">
-          <AvatarImage className="object-cover" src={data?.picture} />
-          <AvatarFallback>CN</AvatarFallback>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:justify-start items-center">
+        <Avatar className="size-50 mx-auto">
+          <AvatarImage className="object-contain" src={data?.picture} />
+          <AvatarFallback>{data?.name}</AvatarFallback>
         </Avatar>
         <div className="">
           <ImageUpload onChange={setImage} label="Profile Picture" />

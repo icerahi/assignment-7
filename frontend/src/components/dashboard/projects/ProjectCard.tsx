@@ -14,7 +14,7 @@ export default function ProjectCard({ project }: { project: any }) {
             src={project.thumbnail}
             alt={project.title}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            className="object-contain group-hover:scale-105 transition-transform duration-300"
           />
         </div>
       ) : (
@@ -23,9 +23,9 @@ export default function ProjectCard({ project }: { project: any }) {
         </div>
       )}
 
-      <div className="p-6">
+      <div className="p-5">
         <Link
-          href={`/dashboard/project/${project.id}`}
+          href={`/dashboard/projects/preview/${project.id}`}
           className="block group transform hover:-translate-y-1 transition-transform duration-300"
         >
           {" "}
@@ -34,17 +34,17 @@ export default function ProjectCard({ project }: { project: any }) {
           </h3>
         </Link>
 
-        <div className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3 inline">
+        <div className="text-gray-700 dark:text-gray-300 mb-4 ">
           <RichTextDisplay
             className="font-mono inline"
-            html={String(project?.description).substring(0, 100)}
+            html={String(project?.description).substring(0, 100) + "..."}
           />
-          ...
+
           <Link
-            href={`/projects/${project.id}`}
+            href={`/dashboard/projects/preview/${project.id}`}
             className="text-blue-600  dark:text-blue-400 cursor-pointer font-semibold text-sm hover:underline"
           >
-            See More →
+            Preview full →
           </Link>
         </div>
 

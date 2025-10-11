@@ -7,7 +7,7 @@ const ProfilePage = async () => {
   const { data } = res;
   return (
     <div className="flex justify-center">
-      <Card className="w-3/4 p-10">
+      <Card className="md:w-[70vw] p-10">
         <CardTitle className="text-center">About Me Information</CardTitle>
         <ProfileInfo data={data} />
       </Card>

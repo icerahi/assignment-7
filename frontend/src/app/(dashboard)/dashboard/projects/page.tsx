@@ -13,7 +13,7 @@ const ProjectPage = async () => {
         <Button asChild>
           <Link href="/dashboard/projects/create">Create New +</Link>
         </Button>
-        <h2 className="text-2xl my-4">All Projects</h2>
+        <h2 className="text-2xl my-4 text-center font-bold">All Projects</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 mx-auto gap-5">

@@ -26,8 +26,8 @@ const LoginForm = () => {
   const form = useForm({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      email: "super@user.com",
-      password: "Imran@420",
+      email: "",
+      password: "",
     },
   });
 
@@ -37,7 +37,7 @@ const LoginForm = () => {
     const toastId = toast.loading("Checking credentials...");
     try {
       const res = await login(values);
-
+      console.log(res);
       if (res.statusCode === 200) {
         toast.success("Login successful", { id: toastId });
         router.push("/dashboard");

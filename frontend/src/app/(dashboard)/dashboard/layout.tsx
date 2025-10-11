@@ -20,6 +20,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     const toastId = toast.loading("Logging out....");
 
     const res = await logout();
+    console.log(res);
     if (res.success) {
       toast.success(res.message, { id: toastId });
       router.refresh();

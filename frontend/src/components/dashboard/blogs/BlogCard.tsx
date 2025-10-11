@@ -27,13 +27,12 @@ export default function BlogCard({ blog }: { blog: any }) {
           </h3>
         </Link>
 
-        <p className="text-gray-700 dark:text-gray-300 mb-4 line-clamp-3">
+        <div className="text-gray-700 dark:text-gray-300 mb-4">
           <RichTextDisplay
             className="font-mono"
-            html={blog?.content?.substring(0, 100)}
+            html={blog?.content?.substring(0, 150) + "..."}
           />
-          ...
-        </p>
+        </div>
 
         <div className="flex items-center justify-between mb-4">
           <span className="text-gray-500 dark:text-gray-400 text-sm">

@@ -7,7 +7,7 @@ export function Footer() {
   const navItems = publicNavbarItems;
 
   return (
-    <footer className="footer flex justify-center items-center w-full mx-auto md:max-w-3xl ">
+    <footer className="mt-5 flex justify-center items-center w-full mx-auto md:max-w-3xl ">
       <div className="w-full mx-auto md:flex md:items-center md:justify-between text-sm font-medium text-neutral-700 dark:text-neutral-300">
         <p>
           © {year}

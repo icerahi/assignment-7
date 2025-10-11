@@ -78,9 +78,9 @@ export async function AboutMe({ user }: { user: any }) {
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold">Career:</h3>
+          <h3 className="text-2xl font-bold pb-2">Career:</h3>
 
-          <div className="py-5">
+          <div className="">
             <ExperienceTimeline data={user.experiences} />
           </div>
         </div>

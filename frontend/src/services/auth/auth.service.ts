@@ -31,7 +31,6 @@ export const logout = async () => {
 };
 
 export const authValidate = async () => {
-  console.log("cookie Header");
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/validate`,
     {
