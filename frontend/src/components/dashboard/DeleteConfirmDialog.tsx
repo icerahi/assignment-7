@@ -54,7 +54,7 @@ export function DeleteConfirmDialog({ id, scope }: IParams) {
         res = await deleteExperience(id);
         if (res?.success) {
           toast.success(res?.message, { id: toastId });
-          router.push("/dashboard/experience");
+          router.push("/dashboard/experiences");
         } else {
           toast.error(res.message ?? "Something went wrong!", { id: toastId });
         }
