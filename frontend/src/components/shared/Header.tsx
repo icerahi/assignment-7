@@ -1,8 +1,8 @@
 "use client";
 
+import { authValidate } from "@/actions/auth.action";
 import { publicNavbarItems } from "@/constants";
 import { cn } from "@/lib/utils";
-import { authValidate } from "@/services/auth/auth.service";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";

@@ -1,4 +1,5 @@
 "use client";
+import { logout } from "@/actions/auth.action";
 import { AppSidebar } from "@/components/dashboard/app-sidebar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -7,7 +8,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { logout } from "@/services/auth/auth.service";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";

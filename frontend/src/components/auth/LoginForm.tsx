@@ -1,7 +1,7 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { login } from "@/services/auth/auth.service";
+import { login } from "@/actions/auth.action";
 import { useRouter } from "next/navigation";
 import { FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -37,8 +37,8 @@ const LoginForm = () => {
     const toastId = toast.loading("Checking credentials...");
     try {
       const res = await login(values);
-      console.log(res);
-      if (res.statusCode === 200) {
+
+      if (res?.statusCode === 200) {
         toast.success("Login successful", { id: toastId });
         router.push("/dashboard");
       } else {

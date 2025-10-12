@@ -1,4 +1,3 @@
-"use server";
 import toast from "react-hot-toast";
 
 export const aboutMe = async () => {
