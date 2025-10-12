@@ -20,7 +20,11 @@ class ProjectService {
     //get all projects
     getAllProjects() {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield db_1.prisma.project.findMany();
+            const result = yield db_1.prisma.project.findMany({
+                orderBy: {
+                    createdAt: "desc",
+                },
+            });
             return {
                 meta: { total: result.length },
                 data: result,

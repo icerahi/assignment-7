@@ -67,14 +67,16 @@ export default function ProjectEditForm({ project }: { project: any }) {
   }
   return (
     <Form {...form}>
-      <ImageUpload onChange={setImage} label="thumbnail" />
-
-      <Image
-        src={project.thumbnail}
-        alt={"Uploaded image"}
-        width={100}
-        height={10}
-      />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:justify-end items-center">
+        {project?.thumbnail && (
+          <div className="relative object-contain h-full">
+            <Image src={project.thumbnail} alt={"Uploaded image"} fill />
+          </div>
+        )}
+        <div className="">
+          <ImageUpload onChange={setImage} label="thumbnail" />
+        </div>
+      </div>
 
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField

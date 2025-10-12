@@ -6,7 +6,11 @@ import AppError from "../../helpers/AppError";
 export class ProjectService {
   //get all projects
   async getAllProjects() {
-    const result = await prisma.project.findMany();
+    const result = await prisma.project.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
     return {
       meta: { total: result.length },

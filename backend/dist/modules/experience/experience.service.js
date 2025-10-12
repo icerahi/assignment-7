@@ -35,6 +35,20 @@ class ExperienceService {
             return experience;
         });
     }
+    //get all experience
+    getAllExperiences() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const experiences = yield db_1.prisma.workExperience.findMany({
+                orderBy: { startDate: "desc" },
+            });
+            return {
+                data: experiences,
+                meta: {
+                    total: experiences.length,
+                },
+            };
+        });
+    }
     //update
     updateExperience(id, payload) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -43,9 +57,10 @@ class ExperienceService {
             });
             if (!experience)
                 throw new AppError_1.default(http_status_codes_1.StatusCodes.NOT_FOUND, "Experience not found!");
+            const updatedData = Object.assign(Object.assign({}, payload), { endDate: payload.endDate ? payload.endDate : null });
             const updatedExperience = yield db_1.prisma.workExperience.update({
                 where: { id: experience.id },
-                data: payload,
+                data: updatedData,
             });
             return updatedExperience;
         });

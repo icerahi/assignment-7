@@ -13,7 +13,6 @@ export class AuthController {
   login = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
       const loginInfo = await authService.login(req.body);
-
       setAuthCookies(res, loginInfo);
 
       return sendResponse(res, {

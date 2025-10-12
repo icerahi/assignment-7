@@ -11,5 +11,6 @@ const experienceController = new experience_controller_1.ExperienceController();
 router.post("/create", checkAuth_1.checkAuth, (0, validateRequest_1.validateRequest)(experinece_validation_1.ExperienceCreateAPISchema), experienceController.create);
 router.patch("/update/:id", checkAuth_1.checkAuth, (0, validateRequest_1.validateRequest)(experinece_validation_1.ExperienceUpdateAPISchema), experienceController.updateExperience);
 router.delete("/delete/:id", checkAuth_1.checkAuth, experienceController.deleteExperience);
+router.get("/all", experienceController.getAllExperiences);
 router.get("/:id", experienceController.getSingleExperience);
 exports.experienceRoutes = router;

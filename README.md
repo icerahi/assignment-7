@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Portfolio Website
 
-## Getting Started
+This repository contains the source code for my personal portfolio website, built with a modern tech stack including Next.js, Express.js, Prisma, and PostgreSQL. The project is divided into two main parts: a Next.js frontend and an Express.js backend.
 
-First, run the development server:
+## Project Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This is a full-stack portfolio application designed to showcase my skills, projects, and blog posts. It features a public-facing site for visitors and a secure private dashboard for content management.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Core Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-   **Authentication & Authorization**: Secure JWT-based login system for the portfolio owner.
+-   **Dashboard**: A private, centralized dashboard to create, update, and delete blogs and manage projects.
+-   **Blog Management**: A complete CRUD system for blog posts, which are publicly viewable.
+-   **About Me Section**: Displays my personal information, work experience, and skills.
+-   **Projects Showcase**: A dedicated section to display personal projects with details.
+-   **Responsive Design**: A polished and responsive user interface built with Tailwind CSS.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+The project is organized into a monorepo-like structure with two main directories:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   `./frontend`: Contains the Next.js frontend application.
+-   `./backend`: Contains the Express.js backend server.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Each directory has its own detailed `README.md` file with specific setup instructions, tech stack details, and more.
 
-## Deploy on Vercel
+-   **[Frontend README](./frontend/README.md)**
+-   **[Backend README](./backend/README.md)**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Live Deployment
+
+-   **Frontend Live URL**: [https://icerahi.vercel.app/](https://icerahi.vercel.app/)
+-   **Backend Live URL**: [https://icerahi-api.vercel.app/](https://icerahi-api.vercel.app/)
+
+---
+
+
+## Admin Credentials for Testing
+
+-   **Email**: `imranmdhasan07@gmail.com`
+-   **Password**: `Imran@420`

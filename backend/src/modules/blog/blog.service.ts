@@ -19,6 +19,9 @@ export class BlogService {
 
     const result = await prisma.blog.findMany({
       where,
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
     return {

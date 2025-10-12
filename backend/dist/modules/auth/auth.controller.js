@@ -26,7 +26,6 @@ class AuthController {
         this.login = (0, catchAsync_1.catchAsync)((req, res, next) => __awaiter(this, void 0, void 0, function* () {
             const loginInfo = yield authService.login(req.body);
             (0, setCookies_1.setAuthCookies)(res, loginInfo);
-            console.log(loginInfo);
             return (0, sendResponse_1.sendResponse)(res, {
                 success: true,
                 statusCode: http_status_codes_1.StatusCodes.OK,
@@ -63,6 +62,14 @@ class AuthController {
                 statusCode: http_status_codes_1.StatusCodes.OK,
                 message: "New Access Token Retrived successfully",
                 data: accessToken,
+            });
+        }));
+        this.validateUser = (0, catchAsync_1.catchAsync)((req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            (0, sendResponse_1.sendResponse)(res, {
+                success: true,
+                statusCode: http_status_codes_1.StatusCodes.OK,
+                message: "User validation successful",
+                data: req.user,
             });
         }));
     }

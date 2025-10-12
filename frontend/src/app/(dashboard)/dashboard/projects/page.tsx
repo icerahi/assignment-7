@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { allProjects } from "@/services/projects/projects.service";
 import Link from "next/link";
 
+export const revalidate = 0;
+
 const ProjectPage = async () => {
   const res = await allProjects();
 

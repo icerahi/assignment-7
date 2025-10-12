@@ -39,6 +39,16 @@ class ExperienceController {
                 data: result,
             });
         }));
+        this.getAllExperiences = (0, catchAsync_1.catchAsync)((req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            const result = yield experienceService.getAllExperiences();
+            return (0, sendResponse_1.sendResponse)(res, {
+                success: true,
+                statusCode: http_status_codes_1.StatusCodes.OK,
+                message: "Experiences retrieved Successfully!",
+                meta: result.meta,
+                data: result.data,
+            });
+        }));
         //update experience
         this.updateExperience = (0, catchAsync_1.catchAsync)((req, res, next) => __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;

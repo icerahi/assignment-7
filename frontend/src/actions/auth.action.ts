@@ -10,13 +10,13 @@ export const login = async (formData: FieldValues) => {
     body: JSON.stringify(formData),
   });
 
-  const data = await res.json();
-  if (!data.success) {
-    return data;
+  const result = await res.json();
+  if (!result?.success) {
+    return result;
   }
 
-  if (data?.data?.accessToken) {
-    (await cookies()).set("accessToken", data?.data?.accessToken, {
+  if (result?.data?.accessToken) {
+    (await cookies()).set("accessToken", result?.data?.accessToken, {
       httpOnly: true,
       secure: true,
       sameSite: "lax",
@@ -24,15 +24,15 @@ export const login = async (formData: FieldValues) => {
     });
   }
 
-  if (data?.data?.refreshToken) {
-    (await cookies()).set("refreshToken", data?.data?.refreshToken, {
+  if (result?.data?.refreshToken) {
+    (await cookies()).set("refreshToken", result?.data?.refreshToken, {
       httpOnly: true,
       secure: true,
       sameSite: "lax",
       path: "/",
     });
   }
-  return data;
+  return result;
 };
 
 export const authValidate = async () => {
@@ -47,7 +47,7 @@ export const authValidate = async () => {
   );
   const data = await res.json();
 
-  if (!data.success) {
+  if (!data?.success) {
     return null;
   }
 

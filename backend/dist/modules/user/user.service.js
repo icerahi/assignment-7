@@ -27,7 +27,9 @@ class UserService {
                     phone: true,
                     bio: true,
                     skills: true,
-                    experiences: true,
+                    experiences: {
+                        orderBy: { startDate: "desc" },
+                    },
                 },
             });
             return userInfo;
@@ -51,6 +53,39 @@ class UserService {
                 },
             });
             return updatedUser;
+        });
+    }
+    dashboard() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const totalProject = yield db_1.prisma.project.count();
+            const totalExperience = yield db_1.prisma.workExperience.count();
+            const totalBlogs = yield db_1.prisma.blog.count();
+            const totalPublishedBlog = yield db_1.prisma.blog.count({
+                where: { published: true },
+            });
+            const totalUnpublishedBlog = yield db_1.prisma.blog.count({
+                where: { published: false },
+            });
+            const recentBlogs = yield db_1.prisma.blog.findMany({
+                orderBy: {
+                    createdAt: "desc",
+                },
+                take: 2,
+            });
+            return {
+                projects: {
+                    total: totalProject,
+                },
+                experiences: {
+                    total: totalExperience,
+                },
+                blogs: {
+                    total: totalBlogs,
+                    published: totalPublishedBlog,
+                    unpublished: totalUnpublishedBlog,
+                    recentBlogs,
+                },
+            };
         });
     }
 }

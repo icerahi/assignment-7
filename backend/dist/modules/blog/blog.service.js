@@ -16,10 +16,26 @@ exports.BlogService = void 0;
 const http_status_codes_1 = require("http-status-codes");
 const db_1 = require("../../config/db");
 const AppError_1 = __importDefault(require("../../helpers/AppError"));
+function parseBoolean(value) {
+    if (typeof value === "boolean")
+        return value;
+    if (typeof value === "string") {
+        return value.trim().toLowerCase() === "true";
+    }
+    return Boolean(value);
+}
 class BlogService {
-    getAllBlogs() {
+    getAllBlogs(query) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield db_1.prisma.blog.findMany();
+            const where = {
+                published: query.published && parseBoolean(query === null || query === void 0 ? void 0 : query.published),
+            };
+            const result = yield db_1.prisma.blog.findMany({
+                where,
+                orderBy: {
+                    createdAt: "desc",
+                },
+            });
             return {
                 meta: { total: result.length },
                 data: result,

@@ -2,6 +2,8 @@ import ProfileInfo from "@/components/dashboard/profile/ProfileInfo";
 import { Card, CardTitle } from "@/components/ui/card";
 import { aboutMe } from "@/services/user/user.service";
 
+export const revalidate = 0;
+
 const ProfilePage = async () => {
   const res = await aboutMe();
   const { data } = res;

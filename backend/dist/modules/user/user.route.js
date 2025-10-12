@@ -11,4 +11,5 @@ const router = (0, express_1.Router)();
 const userController = new user_controller_1.UserController();
 router.get("/about-me", userController.aboutMe);
 router.patch("/update", checkAuth_1.checkAuth, multer_config_1.multerUpload.single("picture"), (0, validateRequest_1.validateRequest)(user_validation_1.UserUpdateAPISchema), userController.updateUser);
+router.get("/dashboard", checkAuth_1.checkAuth, userController.dashboard);
 exports.userRoutes = router;

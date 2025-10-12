@@ -40,6 +40,16 @@ class UserController {
                 data: userInfo,
             });
         }));
+        //update user
+        this.dashboard = (0, catchAsync_1.catchAsync)((req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            const dashboardInfo = yield userService.dashboard();
+            return (0, sendResponse_1.sendResponse)(res, {
+                success: true,
+                statusCode: http_status_codes_1.StatusCodes.OK,
+                message: "Dashboard Information retreived successfully!",
+                data: dashboardInfo,
+            });
+        }));
     }
 }
 exports.UserController = UserController;

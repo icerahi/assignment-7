@@ -66,7 +66,6 @@ export const deleteExperience = async (id: number) => {
       headers: {
         cookie: cookieHeader,
       },
-      credentials: "include",
     }
   );
 

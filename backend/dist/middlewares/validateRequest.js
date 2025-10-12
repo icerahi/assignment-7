@@ -12,8 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.validateRequest = void 0;
 const validateRequest = (zodSchema) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+        var _a, _b;
         try {
-            req.body = req.body.data ? JSON.parse(req.body.data) : req.body;
+            req.body = ((_a = req.body) === null || _a === void 0 ? void 0 : _a.data) ? JSON.parse((_b = req.body) === null || _b === void 0 ? void 0 : _b.data) : req.body;
             req.body = yield zodSchema.parseAsync(req.body);
             next();
         }

@@ -24,7 +24,7 @@ export class UserController {
   updateUser = catchAsync(
     async (req: Request, res: Response, next: NextFunction) => {
       const decodedToken = req.user;
-      console.log("req.body", req.body);
+
       const payload = {
         ...req.body,
         picture: req.file?.path,
